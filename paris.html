@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coupons de Pronostics Fiables</title>
+<style>
+  * {margin:0;padding:0;box-sizing:border-box;}
+  body {font-family:Arial,sans-serif;background:#0b1e39;color:#fff;min-height:100vh;}
+
+  header {
+    background: linear-gradient(90deg,#003580,#0052cc);
+    color:#fff;padding:15px;text-align:center;font-size:22px;font-weight:bold;
+    box-shadow:0 2px 10px rgba(0,0,0,0.5);letter-spacing:1px;
+  }
+
+  nav {
+    display:flex;justify-content:center;gap:15px;background:#003580;padding:10px;position:sticky;top:0;z-index:10;
+  }
+  nav a {
+    color:#fff;text-decoration:none;font-size:15px;padding:6px 12px;border-radius:6px;transition:0.3s;
+  }
+  nav a.active, nav a:hover {background:#1da1f2;}
+
+  .container {
+    padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;
+  }
+
+  .coupon {
+    background:#13294b;border-radius:12px;padding:20px;box-shadow:0 4px 8px rgba(0,0,0,0.5);
+    transition:transform 0.3s;animation:fadeIn 0.8s ease;
+  }
+  .coupon:hover {transform:translateY(-5px);}
+  .coupon h3 {color:#1da1f2;margin-bottom:8px;}
+  .coupon span {display:block;margin-bottom:12px;font-size:14px;color:#ddd;}
+  .coupon button {
+    background:#1da1f2;border:none;padding:10px 15px;border-radius:8px;color:#fff;
+    font-weight:bold;cursor:pointer;transition:0.3s;
+  }
+  .coupon button:hover {background:#1480bf;}
+
+  .operator-title {
+    grid-column:1/-1;font-size:20px;margin:20px 0 10px;color:#ffd700;
+    border-bottom:2px solid #1da1f2;padding-bottom:5px;
+  }
+
+  footer {
+    background:#003580;padding:15px;text-align:center;font-size:14px;color:#ffd700;margin-top:30px;
+    border-top:2px solid #1da1f2;
+  }
+
+  .fiabilite {
+    background:#13294b;padding:12px;text-align:center;font-size:14px;color:#fff;font-weight:bold;
+    animation:pulse 2s infinite;
+    margin-bottom:10px;
+  }
+
+  @keyframes pulse {
+    0%{background-color:#13294b;}
+    50%{background-color:#1a3d6d;}
+    100%{background-color:#13294b;}
+  }
+
+  .whatsapp-container {
+    position:fixed;bottom:20px;right:20px;text-align:center;z-index:20;
+  }
+  .whatsapp-float {
+    width:60px;height:60px;cursor:pointer;
+    transition:transform 0.3s;
+    animation:zoomIn 1s infinite alternate;
+  }
+  .whatsapp-float:hover {transform:scale(1.2);}
+  @keyframes zoomIn {0%{transform:scale(1);}100%{transform:scale(1.1);}}
+
+  .whatsapp-text {
+    color:#25d366;font-weight:bold;font-size:14px;margin-top:4px;font-family:Arial,sans-serif;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0;transform:translateY(20px);}
+    to {opacity:1;transform:translateY(0);}
+  }
+</style>
+</head>
+<body>
+<header>🎯 Pronostics Sportifs Fiables</header>
+
+<nav>
+  <a href="#" class="nav-link active" data-target="football">⚽ Football</a>
+  <a href="#" class="nav-link" data-target="basketball">🏀 Basketball</a>
+  <a href="#" class="nav-link" data-target="tennis">🎾 Tennis</a>
+</nav>
+
+<div class="container" id="coupons-container">
+  <!-- FOOTBALL -->
+  <h2 class="operator-title" data-categorie="football">⚽ Football</h2>
+  <div class="coupon football" data-categorie="football">
+    <h3>Coupon Football - Cote 2</h3>
+    <span>💰 Prix : 1500 FCFA</span>
+    <button onclick="acheter('Football','Coupon cote 2','1500 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon football" data-categorie="football">
+    <h3>Coupon Football - Cote 3</h3>
+    <span>💰 Prix : 2500 FCFA</span>
+    <button onclick="acheter('Football','Coupon cote 3','2500 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon football" data-categorie="football">
+    <h3>Coupon Football - Cote 5</h3>
+    <span>💰 Prix : 3000 FCFA</span>
+    <button onclick="acheter('Football','Coupon cote 5','3000 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon football" data-categorie="football">
+    <h3>Coupon Football - Cote 10</h3>
+    <span>💰 Prix : 5000 FCFA</span>
+    <button onclick="acheter('Football','Coupon cote 10','5000 FCFA')">Acheter</button>
+  </div>
+
+  <!-- BASKETBALL -->
+  <h2 class="operator-title" data-categorie="basketball">🏀 Basketball</h2>
+  <div class="coupon basketball" data-categorie="basketball">
+    <h3>Coupon Basket - Cote 2</h3>
+    <span>💰 Prix : 1500 FCFA</span>
+    <button onclick="acheter('Basketball','Coupon cote 2','1500 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon basketball" data-categorie="basketball">
+    <h3>Coupon Basket - Cote 3</h3>
+    <span>💰 Prix : 2500 FCFA</span>
+    <button onclick="acheter('Basketball','Coupon cote 3','2500 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon basketball" data-categorie="basketball">
+    <h3>Coupon Basket - Cote 5</h3>
+    <span>💰 Prix : 3000 FCFA</span>
+    <button onclick="acheter('Basketball','Coupon cote 5','3000 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon basketball" data-categorie="basketball">
+    <h3>Coupon Basket - Cote 10</h3>
+    <span>💰 Prix : 5000 FCFA</span>
+    <button onclick="acheter('Basketball','Coupon cote 10','5000 FCFA')">Acheter</button>
+  </div>
+
+  <!-- TENNIS -->
+  <h2 class="operator-title" data-categorie="tennis">🎾 Tennis</h2>
+  <div class="coupon tennis" data-categorie="tennis">
+    <h3>Coupon Tennis - Cote 2</h3>
+    <span>💰 Prix : 1500 FCFA</span>
+    <button onclick="acheter('Tennis','Coupon cote 2','1500 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon tennis" data-categorie="tennis">
+    <h3>Coupon Tennis - Cote 3</h3>
+    <span>💰 Prix : 2500 FCFA</span>
+    <button onclick="acheter('Tennis','Coupon cote 3','2500 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon tennis" data-categorie="tennis">
+    <h3>Coupon Tennis - Cote 5</h3>
+    <span>💰 Prix : 3000 FCFA</span>
+    <button onclick="acheter('Tennis','Coupon cote 5','3000 FCFA')">Acheter</button>
+  </div>
+  <div class="coupon tennis" data-categorie="tennis">
+    <h3>Coupon Tennis - Cote 10</h3>
+    <span>💰 Prix : 5000 FCFA</span>
+    <button onclick="acheter('Tennis','Coupon cote 10','5000 FCFA')">Acheter</button>
+  </div>
+</div>
+
+<div class="fiabilite">
+  🔒 Nous gagnons chaque jour avec nos coupons fiables ! 🎯💸
+</div>
+
+<footer>
+  🏆 Nos pronostics fiables permettent à nos membres de remporter des gains réguliers. Jouez intelligemment, suivez nos coupons de confiance et transformez vos paris en succès ! 💸🏆⚡ »
+ ⚡📈
+</footer>
+
+<div class="whatsapp-container">
+  <img src="icone.png" alt="WhatsApp" class="whatsapp-float" onclick="ouvrirWhatsApp()">
+  <div class="whatsapp-text">Groupe VIP</div>
+</div>
+
+<script>
+  const numeroWhatsApp = "237654360456"; 
+  const groupeWhatsApp = " https://chat.whatsapp.com/CknNQzjBCDY36qbmEcK4X7 "; 
+ 
+  function acheter(sport, coupon, prix){
+    const message = `Bonjour Monsieur 🖐️ ! J’aimerais acheter le ${coupon} d’aujourd’hui pour le ${sport}. Veuillez m’indiquer la procédure.`;
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(message)}`,"_blank");
+  }
+
+  function ouvrirWhatsApp(){
+    window.open(groupeWhatsApp,"_blank");
+  }
+
+  const links = document.querySelectorAll(".nav-link");
+  const coupons = document.querySelectorAll(".coupon");
+  const titles = document.querySelectorAll(".operator-title");
+
+  function afficherCategorie(target){
+    coupons.forEach(c => c.style.display = c.dataset.categorie === target ? "block" : "none");
+    titles.forEach(t => t.style.display = t.dataset.categorie === target ? "block" : "none");
+  }
+
+  links.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      links.forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+      const target = link.dataset.target;
+      afficherCategorie(target);
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const activeLink = document.querySelector(".nav-link.active");
+    if(activeLink) afficherCategorie(activeLink.dataset.target);
+  });
+</script>
+</body>
+</html>

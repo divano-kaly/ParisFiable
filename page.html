@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coupons Gagnants - Vos Paris Fiables</title>
+<style>
+  * {margin:0;padding:0;box-sizing:border-box;}
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0b1e39; 
+    color: #fff; 
+    min-height:100vh;
+  }
+
+  .container {
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    justify-content:center; 
+    text-align:center;
+    padding:40px 20px;
+  }
+
+  h1 {
+    font-size:52px;
+    margin-bottom:15px;
+    color:#ffd700;
+    text-shadow: 3px 3px 10px #000;
+    animation: slideDown 1s ease;
+  }
+
+  .subtitle {
+    font-size:22px;
+    color:#1da1f2;
+    margin-bottom:25px;
+    animation: fadeIn 2s ease;
+    font-weight:bold;
+  }
+
+  @keyframes slideDown {
+    from {transform:translateY(-60px);opacity:0;}
+    to {transform:translateY(0);opacity:1;}
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  .header-image {
+    width:100%;
+    max-width:750px;
+    margin-bottom:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.8);
+    animation: fadeIn 2s ease;
+  }
+
+  .message {
+    font-size:20px;
+    color:#ffd700;
+    margin-bottom:25px;
+    text-shadow: 1px 1px 3px #000;
+    animation: fadeIn 3s ease;
+    line-height:1.8;
+  }
+
+  .message .categories {
+    color:#1da1f2;
+    font-weight:bold;
+  }
+
+  .message .whatsapp {
+    color:#25D366;
+    font-weight:bold;
+  }
+
+  .btn-next {
+    padding:16px 40px; 
+    font-size:20px; 
+    background:#1da1f2; 
+    color:#fff; 
+    border:none; 
+    border-radius:12px;
+    cursor:pointer; 
+    transition:0.3s;
+    text-decoration:none;
+    font-weight:bold;
+    animation: glow 1.5s infinite alternate;
+  }
+
+  .btn-next:hover {background:#1480bf;}
+
+  @keyframes glow {
+    0% {box-shadow: 0 0 10px #1da1f2;}
+    50% {box-shadow: 0 0 25px #ffd700;}
+    100% {box-shadow: 0 0 10px #1da1f2;}
+  }
+
+  footer {
+    margin-top:40px; 
+    font-size:14px; 
+    color:#ccc;
+  }
+
+  @media(max-width:600px){
+    .header-image {max-width:90%;}
+    h1 {font-size:36px;}
+    .subtitle {font-size:18px;}
+    .message {font-size:16px;}
+    .btn-next {font-size:18px; padding:14px 30px;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🎯 Coupons Gagnants</h1>
+  <div class="subtitle">Vos pronostics fiables, vos gains assurés !</div>
+
+  <!-- Image principale -->
+  <img src="p.jpg" alt="Coupons Gagnants" class="header-image">
+
+  <!-- Message motivant -->
+  <div class="message">
+    🔥 Obtenez chaque jour vos <span class="categories">Coupons Fiables pour Football, Basketball et Tennis</span> !<br>
+    📈 Rejoignez notre <span class="whatsapp">Groupe WhatsApp VIP</span> et recevez des conseils exclusifs pour maximiser vos gains ! 💸🏆
+  </div>
+
+  <!-- Bouton scintillant -->
+  <a href="paris.html" class="btn-next">➡️ Accéder aux Coupons</a>
+  
+  <footer>
+    © 2025 Coupons Gagnants - Paris 100% fiables
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>S'inscrire — Rail Invest</title>
+
+<!-- Bootstrap (optionnel mais utile) -->
+<link href="bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="inscription.css">
+
+<!-- Font Awesome pour petites icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Google Translate -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',          // langue par défaut
+      includedLanguages: 'fr,ar',  // langues disponibles
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</head>
+<body>
+  
+<div id="translate-container">
+  <div id="google_translate_element"></div>
+</div>
+<div class="page">
+
+  <!-- HERO IMAGE (floutée) -->
+  <div class="hero" role="img" aria-label="Image de fond">
+    <div class="hero-img" aria-hidden="true"></div>
+
+  
+
+<!-- Google Translate widget caché -->
+
+  <!-- FORM WRAPPER -->
+  <div class="form-wrap" aria-live="polite">
+    <div class="form-head">
+      <div class="form-title">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" style="border-radius:8px; background:linear-gradient(45deg,#fff,#fff); padding:6px;">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="#ff7f00" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h1>Créer un compte Rail Invest</h1>
+          <p>Inscris-toi pour participer aux projets d’infrastructure et d’énergie durable.</p>
+        </div>
+      </div>
+
+      <div style="text-align:right;">
+        <small style="color:var(--muted)">Déjà membre ? <a href="login.html">Connecte-toi</a></small>
+      </div>
+    </div>
+
+    <!-- Toggle locale/exterieur -->
+    <div class="toggle-row">
+      <div id="btnLocale" class="toggle-btn active" role="button" aria-pressed="true">Locale</div>
+      <div id="btnExterieur" class="toggle-btn" role="button" aria-pressed="false">Extérieur</div>
+    </div>
+
+    <!-- Registration form -->
+    <form id="regForm" class="reg-form" novalidate>
+      <!-- Country selector + phone prefix -->
+      <div class="col-6">
+        <label for="country">Pays</label>
+        <div style="display:flex; gap:8px;">
+          <select id="country" required>
+            <!-- options populated by JS -->
+          </select>
+        </div>
+        <div class="small-note">Si ton pays n'est pas listé, choisis "Autre" et saisis le pays manuellement.</div>
+      </div>
+
+      <div class="col-6">
+        <label for="phone">Téléphone</label>
+        <div class="prefix">
+          <span class="flag" id="phoneFlag">🇸🇦</span>
+          <input id="phonePrefix" type="text" readonly style="width:96px; text-align:center; margin-right:6px; background:#f9f9f9;">
+          <input id="phone" type="tel" placeholder="Numéro sans espace" required class="auto-expand">
+        </div>
+        <div class="error" id="phoneError" style="display:none"></div>
+      </div>
+
+      
+<div class="col-6">
+  <label for="email">Email</label>
+  <input id="email" type="email" placeholder="exemple@email.com" required class="auto-expand">
+</div>
+
+
+      <div class="col-6">
+        <label for="firstname">Prénom</label>
+        <input id="firstname" type="text" placeholder="Ton prénom" required>
+      </div>
+
+      <div class="col-6">
+        <label for="lastname">Nom</label>
+        <input id="lastname" type="text" placeholder="Ton nom" required>
+      </div>
+
+     
+
+<div class="form-group">
+  <label for="birthdate" class="auto-expand">Date de naissance</label>
+  <div style="display: flex; gap: 10px;">
+    <select id="day" required>
+      <option value="">JJ</option>
+    </select>
+    <select id="month" required>
+      <option value="">MM</option>
+    </select>
+    <select id="year" required>
+      <option value="">AAAA</option>
+    </select>
+  </div>
+  <!-- Champ qui affiche la date complète -->
+  <input type="text" id="birthdate" name="birthdate" readonly placeholder="00/00/0000" style="margin-top:8px; text-align:center;">
+</div>
+
+
+      <div class="col-6">
+        <label for="ref">Code parrainage (facultatif)</label>
+        <input id="ref" type="text" placeholder="Code parrainage">
+      </div>
+
+      <div class="col-6">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" placeholder="8+ caractères" minlength="8" required>
+      </div>
+
+      <div class="col-6">
+        <label for="confirm">Confirmer mot de passe</label>
+        <input id="confirm" type="password" placeholder="Retape le mot de passe" minlength="8" required>
+        <div class="error" id="pwError" style="display:none"></div>
+      </div>
+
+      <!-- Other country free text (hidden by default) -->
+      <div class="col-12 other-country" id="otherCountryWrap">
+        <label for="otherCountry">Autre pays (si non listé)</label>
+        <input id="otherCountry" type="text" placeholder="Saisir le nom du pays">
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12" style="margin-top:6px;">
+        <button type="submit" class="btn-submit">S'inscrire</button>
+        <div class="small-note" style="margin-top:8px;">En cliquant sur s'inscrire, vous acceptez nos <a href="#" style="color:var(--accent)">conditions</a>.</div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<!-- JS: bootstrap optional, then our interaction JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ========= Données pays + préfixes + flags =========
+   6 pays Afrique + 5 autres (incl. Arabie Saoudite)
+*/
+const COUNTRIES = [
+  { code: "CM", name: "Cameroun", prefix: "+237", flag: "🇨🇲", group: "afrique" },
+  { code: "NG", name: "Nigeria", prefix: "+234", flag: "🇳🇬", group: "afrique" },
+  { code: "KE", name: "Kenya", prefix: "+254", flag: "🇰🇪", group: "afrique" },
+  { code: "ZA", name: "South Africa", prefix: "+27", flag: "🇿🇦", group: "afrique" },
+  { code: "GH", name: "Ghana", prefix: "+233", flag: "🇬🇭", group: "afrique" },
+  { code: "EG", name: "Egypt", prefix: "+20", flag: "🇪🇬", group: "afrique" },
+
+  { code: "FR", name: "France", prefix: "+33", flag: "🇫🇷", group: "other" },
+  { code: "GB", name: "United Kingdom", prefix: "+44", flag: "🇬🇧", group: "other" },
+  { code: "US", name: "United States", prefix: "+1", flag: "🇺🇸", group: "other" },
+  { code: "SA", name: "Arabie Saoudite", prefix: "+966", flag: "🇸🇦", group: "other" },
+  { code: "DE", name: "Germany", prefix: "+49", flag: "🇩🇪", group: "other" },
+
+  // special "Other" option for manual entry
+  { code: "OT", name: "Autre", prefix: "", flag: "🏳️", group: "other" }
+];
+
+/* ---------- Helpers ---------- */
+function $(sel) { return document.querySelector(sel); }
+function $all(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+/* ---------- Populate country select ---------- */
+const countrySelect = $("#country");
+function buildCountryOptions(showGroup) {
+  // clear
+  countrySelect.innerHTML = "";
+  // group labelled optgroups: Afrique first then Autres
+  const optAf = document.createElement("optgroup");
+  optAf.label = "Afrique";
+  COUNTRIES.filter(c => c.group === "afrique").forEach(c => {
+    const o = document.createElement("option");
+    o.value = c.code;
+    o.textContent = `${c.flag} ${c.name} (${c.prefix})`;
+    countrySelect.appendChild(o);
+  });
+
+  const optOther = document.createElement("optgroup");
+  optOther.label = "Autres";
+  COUNTRIES.filter(c => c.group === "other").forEach(c => {
+    const o = document.createElement("option");
+    o.value = c.code;
+    o.textContent = `${c.flag} ${c.name}${c.prefix ? ' ('+c.prefix+')' : ''}`;
+    countrySelect.appendChild(o);
+  });
+
+  // set default based on current mode handled elsewhere
+}
+
+/* ---------- UI references ---------- */
+const btnLocale = $("#btnLocale");
+const btnExterieur = $("#btnExterieur");
+const phonePrefix = $("#phonePrefix");
+const phoneFlag = $("#phoneFlag");
+const phoneInput = $("#phone");
+const otherCountryWrap = $("#otherCountryWrap");
+const otherCountryInput = $("#otherCountry");
+const regForm = $("#regForm");
+const pwError = $("#pwError");
+const phoneError = $("#phoneError");
+const langBtn = $("#langBtn");
+const langMenu = $("#langMenu");
+const langLabel = $("#langLabel");
+
+/* ---------- Init ---------- */
+buildCountryOptions();
+
+// default mode: Locale active -> set country to Saudi Arabia as requested
+let mode = "locale"; // locale | exterieur
+function setMode(m) {
+  mode = m;
+  if (m === "locale") {
+    btnLocale.classList.add("active");
+    btnExterieur.classList.remove("active");
+    // set country to SA (Arabie Saoudite)
+    countrySelect.value = "SA";
+    otherCountryWrap.style.display = "none";
+    updatePrefixByCountry("SA");
+  } else {
+    btnLocale.classList.remove("active");
+    btnExterieur.classList.add("active");
+    // placeholder: let user choose
+    countrySelect.value = "";
+    otherCountryWrap.style.display = "none";
+    // show placeholder by adding a disabled option
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Choisis votre pays...";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    countrySelect.prepend(placeholder);
+    phonePrefix.value = "";
+    phoneFlag.textContent = "🏳️";
+  }
+}
+
+/* ---------- update prefix/flag when country changes ---------- */
+function updatePrefixByCountry(code) {
+  const found = COUNTRIES.find(c => c.code === code);
+  if (!found) {
+    phonePrefix.value = "";
+    phoneFlag.textContent = "🏳️";
+    return;
+  }
+  phonePrefix.value = found.prefix || "";
+  phoneFlag.textContent = found.flag || "🏳️";
+}
+
+/* On country change */
+countrySelect.addEventListener("change", function () {
+  const val = this.value;
+  if (val === "OT") {
+    otherCountryWrap.style.display = "block";
+    phonePrefix.value = "";
+    phoneFlag.textContent = "🏳️";
+  } else {
+    otherCountryWrap.style.display = "none";
+    updatePrefixByCountry(val);
+  }
+});
+
+/* Buttons toggle */
+btnLocale.addEventListener("click", function () {
+  setMode("locale");
+});
+btnExterieur.addEventListener("click", function () {
+  setMode("exterieur");
+});
+
+/* Form validation */
+function validatePhone() {
+  const v = phoneInput.value.trim();
+  if (v.length < 6) {
+    phoneError.style.display = "block";
+    phoneError.textContent = "Numéro trop court.";
+    return false;
+  }
+  phoneError.style.display = "none";
+  return true;
+}
+
+function validatePasswords() {
+  const p = $("#password").value;
+  const q = $("#confirm").value;
+  if (p.length < 8) {
+    pwError.style.display = "block";
+    pwError.textContent = "Le mot de passe doit contenir au moins 8 caractères.";
+    return false;
+  }
+  if (p !== q) {
+    pwError.style.display = "block";
+    pwError.textContent = "Les mots de passe ne correspondent pas.";
+    return false;
+  }
+  pwError.style.display = "none";
+  return true;
+}
+
+["firstname","lastname","birth","password","confirm","email"].forEach(id => {
+  const el = $("#"+id);
+  if (!el.value.trim()) {
+    ok = false;
+  }
+});
+
+/* Form submit handler (demo) */
+regForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // basic checks
+  let ok = true;
+  // required fields
+  ["firstname","lastname","birth","password","confirm"].forEach(id => {
+    const el = $("#"+id);
+    if (!el.value.trim()) {
+      ok = false;
+      // you could add per-field errors; keeping simple
+    }
+  });
+
+  if (!validatePhone()) ok = false;
+  if (!validatePasswords()) ok = false;
+
+  // country check: if exterieur and no country chosen -> invalid
+  if (mode === "exterieur") {
+    if (!countrySelect.value) {
+      alert("Veuillez choisir votre pays.");
+      ok = false;
+    }
+  }
+
+  if (!ok) return;
+
+  // prepare payload (here we only simulate)
+  const payload = {
+    country: countrySelect.value === "OT" ? otherCountryInput.value.trim() : countrySelect.value,
+    phone: (phonePrefix.value||"") + " " + phoneInput.value.trim(),
+    firstname: $("#firstname").value.trim(),
+    lastname: $("#lastname").value.trim(),
+    birth: $("#birth").value,
+    ref: $("#ref").value.trim()
+  };
+
+  // show success toast (simple)
+  const successBox = document.createElement("div");
+  successBox.style.position = "fixed";
+  successBox.style.right = "20px";
+  successBox.style.top = "20px";
+  successBox.style.background = "#0f9d58";
+  successBox.style.color = "white";
+  successBox.style.padding = "12px 16px";
+  successBox.style.borderRadius = "8px";
+  successBox.style.boxShadow = "0 8px 24px rgba(0,0,0,0.12)";
+  successBox.textContent = "Inscription simulée — formulaire valide. (Demo only)";
+  document.body.appendChild(successBox);
+  setTimeout(()=> successBox.remove(), 4000);
+
+  // Reset form (for demo)
+  // regForm.reset();
+});
+
+/* Phone input: ensure numericish */
+phoneInput.addEventListener("input", function () {
+  // remove spaces
+  this.value = this.value.replace(/\s+/g,'').replace(/[^\d+]/g,'');
+});
+
+/* Language menu toggle */
+langBtn.addEventListener("click", function(e){
+  e.stopPropagation();
+  langMenu.style.display = langMenu.style.display === "block" ? "none" : "block";
+});
+document.addEventListener("click", function(){
+  langMenu.style.display = "none";
+});
+document.querySelectorAll(".lang-option").forEach(opt => {
+  opt.addEventListener("click", function(){
+    const lang = this.dataset.lang;
+    langLabel.textContent = lang.toUpperCase();
+    langMenu.style.display = "none";
+    // TODO: hook language switching (you have translations)
+  });
+});
+
+/* init page */
+setMode("locale");
+
+
+document.querySelectorAll(".auto-expand").forEach(input => {
+  input.addEventListener("input", function() {
+    this.style.width = "auto"; 
+    this.style.width = (this.scrollWidth + 20) + "px"; 
+  });
+});
+</script>
+
+<!--integration de langue de traduction-->
+<script src="traduction.js"></script>
+<script src="birthdate.js"></script>
+
+</body>
+</html>

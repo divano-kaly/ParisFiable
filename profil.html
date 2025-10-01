@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rail Invest - Profil</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Oswald:wght@200..700&family=Roboto:wght@300;400;700;900&display=swap');
+
+  body {
+    background: #fff8f0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 60px; /* espace réservé pour le footer */
+  }
+
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-bottom: 2px solid orange;
+    padding: 12px 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(255, 165, 0, 0.3);
+  }
+
+  .header .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .header .logo i {
+    font-size: 28px;
+    color: orange;
+    margin-right: 8px;
+  }
+
+  .header .title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .header .title span.rail {
+    color: green;
+  }
+
+  .header .title span.invest {
+    color: orange;
+  }
+
+  .content {
+    margin-top: 80px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+  }
+
+  /* Bloc actualité */
+  .news-block {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .news-block:hover {
+    transform: translateY(-4px);
+  }
+
+  .news-block h3 {
+    font-family: 'Oswald', sans-serif;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .news-block p {
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 165, 0, 0.05);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 6px 0;
+    border-top: 2px solid rgba(255, 165, 0, 0.3);
+    box-shadow: 0 -2px 8px rgba(255, 165, 0, 0.15);
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+  }
+
+  .footer-item {
+    flex: 1;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .footer-item i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .footer-item.active,
+  .footer-item:hover {
+    color: orange;
+  }
+
+  .footer-item.active i,
+  .footer-item:hover i {
+    transform: scale(1.2);
+    color: orange;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <i class="fas fa-coins"></i>
+      <div class="title"><span class="rail">RAIL</span> <span class="invest">INVEST</span></div>
+    </div>
+  </div>
+
+  <!-- Contenu -->
+  <div class="content">
+    <div class="news-block">
+      <h3>Annonce importante</h3>
+      <p>
+        Rail Invest continue d’élargir ses activités dans le domaine de l’énergie solaire avec le lancement 
+        d’un nouveau projet visant à électrifier plus de 50 villages d’ici 2026. 
+        Ce projet marque une étape clé dans notre engagement pour le développement durable.
+      </p>
+    </div>
+
+    <div class="news-block">
+      <h3>Investissement ferroviaire</h3>
+      <p>
+        Nous avons récemment signé un partenariat stratégique pour la modernisation de 200 km de voies ferrées. 
+        Ce projet vise à améliorer la connectivité et à stimuler les échanges commerciaux en Afrique centrale.
+      </p>
+    </div>
+
+    <div class="news-block">
+      <h3>Nos engagements sociaux</h3>
+      <p>
+        Rail Invest place l’humain au cœur de ses projets. Plus de 500 emplois directs et 1200 emplois indirects 
+        ont été créés au cours de l’année 2024. 
+        Notre mission est de contribuer à l’autonomisation des communautés locales.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+  <a href="accueil.html"  class="footer-item">
+    <i class="fas fa-home"></i>
+    <span>Accueil</span>
+  </a>
+  <a href="profil.html"  class="footer-item active">
+    <i class="fas fa-user"></i>
+    <span>Profil</span>
+  </a>
+  <a href="marche.html" class="footer-item">
+    <i class="fas fa-chart-line"></i>
+    <span>Marchés</span>
+  </a>
+  <a href="equipe.html" class="footer-item">
+    <i class="fas fa-users"></i>
+    <span>Équipe</span>
+  </a>
+  <a href="config.html" class="footer-item">
+    <i class="fas fa-cog"></i>
+    <span>Config</span>
+  </a>
+</div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

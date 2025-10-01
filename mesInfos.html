@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mes Revenus — Rail Invest</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fonts -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Poppins:wght@300;400;600;700&display=swap');
+  </style>
+
+  <style>
+    :root {
+      --accent:#ff9800;
+      --accent-light:#ffe0b2;
+      --soft-bg:#faf9f7;
+      --muted:#6b7280;
+      --radius:18px;
+    }
+
+    body {
+      font-family:'Poppins',sans-serif;
+      margin:0;
+      background:linear-gradient(135deg,#fff,#fafafa);
+      color:#333;
+    }
+
+    /* Bande décorative gauche */
+    .decor-bar {
+      position:fixed; top:0; left:0; width:6px; height:100%;
+      background:linear-gradient(180deg,var(--accent),#f06292);
+      box-shadow:0 0 12px rgba(0,0,0,0.1);
+      z-index:900;
+    }
+
+    /* Bandeau ticker corrigé */
+    .ticker-wrap {
+      width:100%; overflow:hidden;
+      background:#fff;
+      border-bottom:2px solid var(--accent-light);
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+      padding:10px 0; position:fixed; top:0; left:0; z-index:1000;
+      text-align:center;
+    }
+    .ticker-item {
+      display:none;
+      font-weight:500;
+      font-style:italic;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .page-container {
+      max-width:1250px; margin:100px auto 40px; padding:0 16px;
+    }
+
+    /* Cards */
+    .info-card {
+      background:var(--soft-bg);
+      border-radius:var(--radius);
+      border:1px solid var(--accent-light);
+      box-shadow:0 8px 22px rgba(0,0,0,0.06);
+      padding:24px; margin-bottom:28px;
+      transition:transform .3s ease, box-shadow .3s ease;
+      width:100%;
+    }
+    .info-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 14px 30px rgba(0,0,0,0.1);
+    }
+    .card-title {
+      font-weight:600; font-size:1.2rem; margin-bottom:20px;
+      display:flex; align-items:center; gap:10px;
+      color:#444;
+    }
+    .sticker {
+      width:42px; height:42px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(255,152,0,0.15); color:var(--accent);
+      font-size:18px; box-shadow:0 4px 10px rgba(255,152,0,0.2);
+    }
+
+    /* Grilles */
+    .info-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;
+    }
+    .info-item {
+      background:linear-gradient(90deg,
+        rgba(255,152,0,0.08) 0%,
+        #fff 12%,
+        #fff 88%,
+        rgba(255,152,0,0.08) 100%);
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,0.04);
+      padding:16px;
+      display:flex; flex-direction:column;
+      box-shadow:0 4px 14px rgba(0,0,0,0.04);
+      transition:transform .3s ease, background .3s ease;
+      justify-content:space-between;
+    }
+    .info-item:hover {
+      transform:translateY(-4px);
+      background:linear-gradient(90deg,
+        rgba(255,152,0,0.15) 0%,
+        #fff7f0 12%,
+        #fff7f0 88%,
+        rgba(255,152,0,0.15) 100%);
+    }
+    .info-label {
+      font-size:0.85rem;
+      color:var(--muted);
+      font-style:italic;
+    }
+    .info-value {
+      font-weight:600;
+      font-size:1rem;
+      margin-top:2px;
+      color:#222;
+    }
+    .info-value.accent {color:var(--accent);}
+    .info-value.green {color:#2e7d32;}
+    .info-value.red {color:#c62828;}
+
+    /* Password toggle */
+    .password-field {display:flex; align-items:center; justify-content:space-between;}
+    .password-toggle {cursor:pointer; color:var(--accent);}
+
+    /* ID compte spécial */
+    .id-field {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+    }
+    .id-value {
+      font-family:'Bitcount Prop Double Ink',sans-serif;
+      font-size:1.4rem;
+      color:var(--accent);
+      font-weight:700;
+      letter-spacing:1px;
+    }
+    .copy-btn {
+      background:var(--accent); color:#fff;
+      border:none; padding:6px 12px; border-radius:8px;
+      cursor:pointer; transition:background .3s;
+      font-size:0.85rem;
+    }
+    .copy-btn:hover {background:#e68900;}
+  </style>
+</head>
+<body>
+
+<div class="decor-bar"></div>
+
+<!-- Bandeau défilant -->
+<div class="ticker-wrap">
+  <div class="ticker-item">00********90 a investi 500$</div>
+  <div class="ticker-item">67********12 a retiré 200$</div>
+  <div class="ticker-item">98********45 vient de créer son compte</div>
+  <div class="ticker-item">32********67 a configuré son profil</div>
+  <div class="ticker-item">44********22 a déposé 1000$</div>
+  <div class="ticker-item">51********88 a retiré 300$</div>
+  <div class="ticker-item">76********09 a reçu une commission</div>
+  <div class="ticker-item">12********33 a activé une machine</div>
+  <div class="ticker-item">90********54 a acheté 2 machines</div>
+  <div class="ticker-item">65********10 a reçu ses revenus journaliers</div>
+  <div class="ticker-item">88********27 a changé son mot de passe</div>
+  <div class="ticker-item">19********71 a augmenté son solde</div>
+  <div class="ticker-item">21********40 a parrainé un ami</div>
+</div>
+
+<div class="page-container">
+
+  <!-- Infos perso -->
+  <div class="info-card">
+    <div class="card-title">
+      <div class="sticker"><i class="fas fa-user"></i></div> 
+      Informations Personnelles
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">Nom</div><div class="info-value">Doe</div></div>
+      <div class="info-item"><div class="info-label">Prénom</div><div class="info-value accent">John</div></div>
+      <div class="info-item"><div class="info-label">Date Naissance</div><div class="info-value">01/01/1990</div></div>
+      <div class="info-item password-field">
+        <div>
+          <div class="info-label">Mot de passe</div>
+          <div class="info-value" id="pwd-value">••••••••</div>
+        </div>
+        <i class="fas fa-eye password-toggle" id="pwd-toggle"></i>
+      </div>
+      <div class="info-item"><div class="info-label">Téléphone</div><div class="info-value green">+237 690 000 000</div></div>
+      <div class="info-item"><div class="info-label">Pays</div><div class="info-value">Cameroun</div></div>
+      <div class="info-item id-field" style="grid-column:span 2;">
+        <div>
+          <div class="info-label">ID Compte</div>
+          <div class="id-value" id="idCompte">INV-2025-00987</div>
+        </div>
+        <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenus -->
+  <div class="info-card">
+    <div class="card-title">
+      <div class="sticker"><i class="fas fa-coins"></i></div> 
+      Détails des Revenus
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">Solde Retiré</div><div class="info-value red">1 200 $</div></div>
+      <div class="info-item"><div class="info-label">Solde Actuel</div><div class="info-value green">3 400 $</div></div>
+      <div class="info-item"><div class="info-label">Solde Déposé</div><div class="info-value accent">5 000 $</div></div>
+      <div class="info-item"><div class="info-label">Commissions Reçues</div><div class="info-value">800 $</div></div>
+      <div class="info-item"><div class="info-label">Commission Niv 1</div><div class="info-value accent">300 $</div></div>
+      <div class="info-item"><div class="info-label">Commission Niv 2</div><div class="info-value">200 $</div></div>
+      <div class="info-item"><div class="info-label">Commission Niv 3</div><div class="info-value">100 $</div></div>
+      <div class="info-item"><div class="info-label">Revenus Aujourd'hui</div><div class="info-value green">50 $</div></div>
+      <div class="info-item"><div class="info-label">Revenus Mensuels</div><div class="info-value accent">1 500 $</div></div>
+      <div class="info-item"><div class="info-label">Solde Bonus</div><div class="info-value">120 $</div></div>
+    </div>
+  </div>
+
+  <!-- Machines -->
+  <div class="info-card">
+    <div class="card-title">
+      <div class="sticker"><i class="fas fa-cogs"></i></div> 
+      Statistiques des Machines
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">Machines Achetees</div><div class="info-value">5</div></div>
+      <div class="info-item"><div class="info-label">Machines Actives</div><div class="info-value green">3</div></div>
+      <div class="info-item"><div class="info-label">Machines Inactives</div><div class="info-value red">2</div></div>
+    </div>
+  </div>
+
+  <!-- Conclusion -->
+  <div class="info-card">
+    <div class="card-title">
+      <div class="sticker"><i class="fas fa-info-circle"></i></div> 
+      Pourquoi ces informations ?
+    </div>
+    <p class="text-muted fst-italic">
+      Ces informations vous permettent de suivre vos revenus, vos investissements et vos machines en toute transparence.  
+      Chaque cadre est conçu pour mettre en valeur l’essentiel et faciliter vos décisions sur <span class="fw-bold" style="color:var(--accent)">Rail Invest</span>.
+    </p>
+  </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Mot de passe toggle
+  $('#pwd-toggle').on('click',function(){
+    const $pwd = $('#pwd-value');
+    if($pwd.text()==='••••••••'){
+      $pwd.text('MonPass123!');
+      $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+    }else{
+      $pwd.text('••••••••');
+      $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+    }
+  });
+
+  // Copier ID
+  $('#copyBtn').on('click',function(){
+    const idText = $('#idCompte').text();
+    navigator.clipboard.writeText(idText).then(()=>{
+      $(this).text('Copié ✔').prop('disabled',true);
+      setTimeout(()=>{
+        $(this).html('<i class="fas fa-copy"></i> Copier').prop('disabled',false);
+      },2000);
+    });
+  });
+
+  // Ticker avec fade/slide
+  let items = $(".ticker-item");
+  let index = 0;
+  function showNext(){
+    items.fadeOut(400).removeClass("active");
+    $(items[index]).slideDown(600).fadeIn(600);
+    index = (index+1) % items.length;
+    setTimeout(showNext, 3500);
+  }
+  $(document).ready(function(){
+    items.hide();
+    $(items[0]).show();
+    index=1;
+    setTimeout(showNext, 3500);
+  });
+</script>
+</body>
+</html>

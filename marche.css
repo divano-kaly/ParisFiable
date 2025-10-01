@@ -1,0 +1,361 @@
+:root {
+  --accent: #ff9800;
+  --muted: #666;
+  --card-gap: 18px;
+  --card-radius: 18px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, #fafafa, #f2f2f2);
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+padding-bottom: 150px; /* espace réservé pour le footer */
+}
+
+
+/* Header */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 2px solid rgba(255, 152, 0, 0.25);
+  z-index: 1200;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.site-header .brand {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.05rem;
+}
+.site-header .brand .rail {
+  color: green;
+}
+.site-header .brand .invest {
+  color: var(--accent);
+}
+
+/* Horizontal scroller */
+.domains-scroller-wrap {
+  padding-top: 84px; /* below header */
+  padding-bottom: 20px;
+}
+.domains-scroller {
+  display: flex;
+  gap: var(--card-gap);
+  padding: 18px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  align-items: flex-start;
+}
+
+/* Domain cards */
+.domain-card {
+  scroll-snap-align: start;
+  flex: 0 0 84%;
+  background: linear-gradient(180deg, #fff, rgba(255, 152, 0, 0.03));
+  border-radius: var(--card-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  height: calc(100vh - 180px);
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: background 0.6s ease;
+}
+.domain-card:hover {
+  background: linear-gradient(180deg, #fff, rgba(255, 152, 0, 0.08));
+}
+
+/* gentle sway */
+@keyframes sway {
+  0% { transform: translateX(0) }
+  50% { transform: translateX(2px) }
+  100% { transform: translateX(0) }
+}
+.domain-card.sway {
+  animation: sway 6s ease-in-out infinite;
+}
+
+/* Inner card */
+.domain-inner {
+  padding: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+.domain-title {
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.domain-subtitle {
+  font-size: 0.95rem;
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.domain-desc {
+  font-size: 0.95rem;
+  color: #333;
+  opacity: 0.9;
+  text-align: center;
+  margin: 8px 0 18px;
+  transition: opacity 1s ease;
+}
+.domain-desc.fade {
+  opacity: 0.45;
+}
+
+/* Products */
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.product-item {
+  background: linear-gradient(180deg, #fff, #fbfbfb);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+.product-thumb {
+  width: 110px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  transition: transform 0.25s ease;
+}
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-thumb.enlarge {
+  transform: scale(1.06);
+}
+
+.product-meta {
+  flex: 1;
+}
+.product-name {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.product-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  font-size: 0.85rem;
+}
+.stat {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+.stat .value {
+  display: block;
+  font-weight: 700;
+}
+.stat .label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* value colors */
+.val-blue { color: #1976d2 }
+.val-green { color: #2e7d32 }
+.val-orange { color: var(--accent) }
+.val-purple { color: #6a1b9a }
+
+.buy-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.btn-buy {
+  border-radius: 999px;
+  padding: 8px 28px;
+  font-weight: 600;
+  transform: translateY(0);
+  transition: transform 0.18s ease;
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.12);
+}
+.btn-buy:active {
+  transform: translateY(2px);
+}
+
+/* Conclusion plus visible */
+.conclusion {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+  font-style: italic;
+  color: #333;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px dashed rgba(255, 152, 0, 0.4);
+}
+/* Desktop */
+@media (min-width: 992px) {
+  .domain-card {
+    flex: 0 0 30%;
+    height: 520px;
+  }
+  .domains-scroller {
+    padding: 28px;
+  }
+}
+
+/* Scrollbars */
+.domains-scroller::-webkit-scrollbar {
+  height: 8px;
+}
+.domains-scroller::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+}
+/* Inner card */
+.domain-inner {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+  backdrop-filter: blur(3px);
+}
+
+
+
+.domain-inner::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+
+
+/* Wrapper principal : espace en bas pour le footer */
+.domains-scroller-wrap {
+  padding-top: 84px; /* sous le header */
+  padding-bottom: 140px; /* plus d’espace pour ne pas cacher les conclusions */
+}
+
+/* Domain cards
+/* Peek hint */
+.peek-hint {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* fade-in on load */
+.domains-scroller.wrap-fade {
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 700ms cubic-bezier(.2, .9, .2, 1);
+}
+.domains-scroller.wrap-fade.loaded {
+  opacity: 1;
+  transform: none;
+}
+
+/* Domain cards */
+.domain-card {
+  background: linear-gradient(180deg, #ffffff, #fff7f0);
+  border-radius: var(--card-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px; /* espace sous chaque carte */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background 0.6s ease;
+}
+.domain-card:hover {
+  background: linear-gradient(180deg, #ffffff, #ffeacc);
+}
+
+
+/* Footer fixe */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 165, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
+  border-top: 2px solid rgba(255, 165, 0, 0.3);
+  box-shadow: 0 -2px 8px rgba(255, 165, 0, 0.15);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  animation: borderMove 6s linear infinite;
+}
+
+/* Chaque bouton du footer */
+.footer-item {
+  flex: 1;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-item i {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Actif */
+.footer-item.active,
+.footer-item:hover {
+  color: orange;
+}
+
+.footer-item.active i,
+.footer-item:hover i {
+  transform: scale(1.2);
+  color: orange;
+}
+

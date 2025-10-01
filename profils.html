@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="profils.css">
+</head>
+<body>
+
+<div class="container">
+    <!-- En-tête -->
+    <div class="row header py-3 align-items-center">
+        <div class="col-3">
+            <img src="logo.png" alt="Logo" class="img-fluid rounded-circle">
+        </div>
+        <div class="col-9">
+            <h5 class="mb-0">Divano</h5>
+            <small>068******209</small>
+        </div>
+    </div>
+
+    <!-- Niveau VIP -->
+    <div class="card vip-card shadow-sm mb-3">
+        <div class="card-body">
+            <h6 class="text-center"><i class="fas fa-gem"></i> NIVEAU VIP | VIP 0</h6>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <small>Progression actuelle 0 / 2000.00</small>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="row mb-3">
+        <div class="col-6"><button class="btn btn-block recharge-btn">Recharge <i class="fas fa-chevron-right"></i></button></div>
+        <div class="col-6"><button class="btn btn-block retrait-btn">Retrait <i class="fas fa-chevron-right"></i></button></div>
+    </div>
+
+    <!-- Raccourcis -->
+    <div class="row text-center mb-3">
+        <div class="col-3"><i class="fas fa-list fa-2x orange-icon"></i><br><small>Commandes</small></div>
+        <div class="col-3"><i class="fas fa-wallet fa-2x orange-icon"></i><br><small>Mon Solde</small></div>
+        <div class="col-3"><i class="fas fa-users fa-2x orange-icon"></i><br><small>Mon Équipe</small></div>
+        <div class="col-3"><i class="fas fa-credit-card fa-2x orange-icon"></i><br><small>Carte Bancaire</small></div>
+    </div>
+
+    <!-- Mes Revenus -->
+    <div class="card shadow-sm mb-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="mb-0">Mes Revenus</h6>
+            <a href="#"><small>Détails des Revenus ></small></a>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6"><small>Solde de Recharge</small><br><b>FCFA0.00</b></div>
+                <div class="col-6"><small>Solde de Retrait</small><br><b>FCFA0.00</b></div>
+            </div>
+            <div class="row">
+                <div class="col-4"><small>Revenu Produit</small><br><b>FCFA0.00</b></div>
+                <div class="col-4"><small>Commission</small><br><b>FCFA0.00</b></div>
+                <div class="col-4"><small>Nombre de Commandes</small><br><b>0</b></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plus de Services -->
+    <div class="card shadow-sm mb-3">
+        <div class="card-header">
+            <h6 class="mb-0">Plus de Services</h6>
+        </div>
+        <div class="card-body text-center">
+            <div class="row">
+                <div class="col-3">
+                    <div class="circle-icon"><i class="fas fa-crown orange-icon"></i></div>
+                    <small>VIP</small>
+                </div>
+                <div class="col-3">
+                    <div class="circle-icon"><i class="fas fa-headset orange-icon"></i></div>
+                    <small>Centre d'Aide</small>
+                </div>
+                <div class="col-3">
+                    <div class="circle-icon"><i class="fas fa-info-circle orange-icon"></i></div>
+                    <small>À Propos de Nous</small>
+                </div>
+                <div class="col-3">
+                    <div class="circle-icon"><i class="fab fa-telegram-plane orange-icon"></i></div>
+                    <small>Telegram</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Liste d'éléments cliquables -->
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h6 class="mb-0">Informations Utiles</h6>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                <li class="clickable-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="#" class="item-link">Aide et Support</a>
+                        </div>
+                        <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <small class="text-muted">Consultez notre centre d'aide pour trouver des réponses à vos questions.</small>
+                </li>
+                <li class="clickable-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="#" class="item-link">Conditions d'Utilisation</a>
+                        </div>
+                        <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <small class="text-muted">Veuillez lire attentivement nos conditions d'utilisation avant de continuer.</small>
+                </li>
+                <li class="clickable-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="#" class="item-link">Politique de Confidentialité</a>
+                        </div>
+                        <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <small class="text-muted">Nous prenons votre vie privée au sérieux. Consultez notre politique de confidentialité.</small>
+                </li>
+                <li class="clickable-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="#" class="item-link">FAQ</a>
+                        </div>
+                        <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <small class="text-muted">Trouvez les réponses aux questions les plus fréquemment posées.</small>
+                </li>
+                 <li class="clickable-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="#" class="item-link">Contactez-nous</a>
+                        </div>
+                        <a href="#" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <small class="text-muted">Contactez-nous en cas de difficultés.</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+<div class="footer-nav">
+  <a href="accueil.html"  class="footer-item">
+    <i class="fas fa-home"></i>
+    <span>Accueil</span>
+  </a>
+  <a href="profils.html"  class="footer-item active">
+    <i class="fas fa-user"></i>
+    <span>Profil</span>
+  </a>
+  <a href="marche.html" class="footer-item">
+    <i class="fas fa-chart-line"></i>
+    <span>Marchés</span>
+  </a>
+  <a href="equipe.html" class="footer-item">
+    <i class="fas fa-users"></i>
+    <span>Équipe</span>
+  </a>
+  <a href="config.html" class="footer-item">
+    <i class="fas fa-cog"></i>
+    <span>Config</span>
+  </a>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

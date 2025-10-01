@@ -1,0 +1,232 @@
+/* style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+body {
+    font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins */
+    font-size: 0.9rem; /* Augmentation légère de la taille de la police */
+    background-color: #f5f5f5; /* Gris très clair pour réduire le blanc */
+    color: #555; /* Gris plus doux pour le texte principal */
+    line-height: 1.6; /* Amélioration de l'espacement des lignes */
+}
+
+/* Importation de Poppins depuis Google Fonts (peut également être ajouté dans le HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* Styles généraux pour les cartes et les boutons */
+.card {
+    border-radius: 12px; /* Bords plus arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Ombre plus douce */
+    border: none; /* Suppression des bordures par défaut */
+    margin-bottom: 1.5rem; /* Augmentation de l'espace entre les éléments */
+}
+
+.btn {
+    border-radius: 8px; /* Bords arrondis pour les boutons */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06); /* Ombre plus discrète */
+}
+
+/* En-tête */
+.header {
+    background-color: #ffb347; /* Orange plus doux */
+    color: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12); /* Ombre plus prononcée pour l'en-tête */
+}
+
+/* Carte VIP */
+.vip-card {
+    background-color: #ff9800; /* Orange plus intense */
+    color: #fff;
+}
+
+.vip-card .progress {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.vip-card .progress-bar {
+    background-color: #fff;
+}
+
+/* Boutons Recharge et Retrait */
+.recharge-btn, .retrait-btn {
+    background-color: #f57c00; /* Orange foncé */
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease; /* Transition pour un effet subtil au survol */
+}
+
+.recharge-btn:hover, .retrait-btn:hover {
+    background-color: #e65100; /* Orange encore plus foncé au survol */
+}
+
+/* Icônes Orange */
+.orange-icon {
+    color: #f57c00; /* Orange foncé pour les icônes */
+}
+
+/* Cadres d'icônes circulaires */
+.circle-icon {
+    width: 60px; /* Augmentation de la taille */
+    height: 60px;
+    border-radius: 50%;
+    background-color: #2196f3; /* Bleu plus vif */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 0.5rem; /* Ajustement de l'espacement */
+    font-size: 1.4rem; /* Augmentation de la taille des icônes */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Ombre légèrement plus intense */
+    transition: transform 0.2s ease; /* Ajout d'une légère animation */
+}
+
+.circle-icon:hover {
+    transform: translateY(-3px); /* Lève légèrement l'icône au survol */
+}
+
+/* Suppression de l'excès de blanc */
+.container {
+    padding: 1rem; /* Ajout de padding au container */
+}
+
+/* Ajustement de la hauteur des éléments (si nécessaire) */
+/* Exemple : Augmentation de la hauteur des boutons */
+.btn {
+    padding: 0.75rem 1.5rem;
+}
+
+/* Bordures et textures (exemple - vous devrez peut-être utiliser des images ou des dégradés) */
+.card-header {
+    background-color: #fff; /* Fond blanc pour l'en-tête de la carte */
+    border-bottom: 1px solid #eee; /* Bordure légère en bas de l'en-tête */
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px 12px 0 0; /* Bords arrondis en haut */
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+
+
+
+/* Cadre d'informations utiles */
+.clickable-item {
+    border: 1px solid #f0ad4e; /* Bordure orange discrète */
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: rgba(255, 171, 64, 0.05); /* Orange très léger en fond (5% d'opacité) */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transitions douces */
+    position: relative; /* Position relative pour l'animation */
+    overflow: hidden; /* Empêche le dépassement de l'animation */
+}
+
+/* Animation subtile du fond au survol */
+.clickable-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 171, 64, 0.1) 0%, rgba(255, 171, 64, 0.2) 50%, rgba(255, 171, 64, 0.1) 100%); /* Dégradé orange très léger */
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0; /* Place l'animation derrière le contenu */
+}
+
+.clickable-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+}
+
+.clickable-item:hover::before {
+    transform: translateX(0); /* Déclenche l'animation au survol */
+}
+
+.item-link {
+    color: #d9534f; /* Orange-rouge */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    position: relative; /* Pour que le texte soit au-dessus de l'animation */
+    z-index: 1;
+}
+
+.item-link:hover {
+    color: #c9302c;
+}
+
+.arrow-link {
+    color: #d9534f; /* Orange-rouge pour la flèche */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    position: relative; /* Pour que la flèche soit au-dessus de l'animation */
+    z-index: 1;
+}
+
+.arrow-link:hover {
+    color: #c9302c;
+}
+
+.text-muted {
+    position: relative; /* Pour que le texte soit au-dessus de l'animation */
+    z-index: 1;
+}
+
+
+
+/* Footer fixe */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 165, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
+  border-top: 2px solid rgba(255, 165, 0, 0.3);
+  box-shadow: 0 -2px 8px rgba(255, 165, 0, 0.15);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  animation: borderMove 6s linear infinite;
+}
+
+/* Chaque bouton du footer */
+.footer-item {
+  flex: 1;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-item i {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Actif */
+.footer-item.active,
+.footer-item:hover {
+  color: orange;
+}
+
+.footer-item.active i,
+.footer-item:hover i {
+  transform: scale(1.2);
+  color: orange;
+}
+
+/* Pour que le contenu ne soit jamais caché */
+body {
+  padding-bottom: 60px; /* espace réservé pour le footer */
+}

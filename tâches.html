@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tasks — Rail Invest</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#ff9800;
+      --accent-2:#ffb86b;
+      --muted:#6b7280;
+      --soft:#fafafa;
+      --card-radius:16px;
+    }
+    body{
+      font-family:'Poppins',sans-serif;
+      margin:0; 
+      background:linear-gradient(135deg,#fff9f3,#fff3e5);
+      color:#2b2b2b;
+    }
+    .site-header{
+      position:fixed; top:0; left:0; right:0; height:64px; display:flex; align-items:center;
+      gap:12px; padding:10px 18px; background:#fff; border-bottom:1px solid rgba(0,0,0,0.05);
+      z-index:1200;
+    }
+    .brand{font-weight:700; letter-spacing:0.6px}
+    .brand .rail{color:green}
+    .brand .invest{color:var(--accent)}
+    .page{max-width:1100px; margin:84px auto 24px; padding:0 16px;}
+
+    .top-card{
+      border-radius:14px; overflow:hidden; height:160px; margin-bottom:20px;
+      background:linear-gradient(180deg,#ff9800,#ffcc80);
+      position:relative; box-shadow:0 12px 30px rgba(0,0,0,0.08);
+      animation: floaty 6s ease-in-out infinite;
+    }
+    @keyframes floaty{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+    .top-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.25);}
+    .top-content{position:relative;z-index:2;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;}
+    .top-content h2{font-weight:700;margin:0;font-size:1.5rem}
+    .top-content p{opacity:.95;font-size:.95rem}
+
+    .task-card{
+      background:linear-gradient(180deg,#fff,#fff9f4);
+      border-radius:var(--card-radius); padding:20px;
+      box-shadow:0 8px 22px rgba(0,0,0,0.06);
+      border-left:6px solid var(--accent); border-right:6px solid var(--accent-2);
+      display:flex; flex-direction:column; gap:12px; position:relative;
+      transition:all .3s ease;
+      animation: breathe 5s ease-in-out infinite;
+    }
+    @keyframes breathe{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.02)}
+    }
+    .task-card:hover{box-shadow:0 14px 30px rgba(0,0,0,0.1);}
+    .sticker{
+      width:50px;height:50px;border-radius:14px;background:rgba(255,152,0,.15);
+      display:flex;align-items:center;justify-content:center;color:var(--accent);
+      font-size:20px;flex-shrink:0;
+    }
+    .task-header{display:flex;align-items:center;gap:14px;}
+    .task-title{font-weight:600;font-size:1.1rem;}
+    .progress-text{font-size:.95rem;color:var(--muted); font-style:italic;}
+    .progress-bar{
+      height:8px;border-radius:8px;background:#eee;overflow:hidden;
+    }
+    .progress-bar div{
+      height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      width:100%; animation: progressFill 3s ease-in-out infinite;
+    }
+    @keyframes progressFill{
+      0%{width:0}
+      100%{width:100%}
+    }
+    .btn-claim{align-self:flex-start;padding:8px 16px;font-weight:600;border:none;border-radius:8px;
+      background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#fff;
+      transition:.2s ease;}
+    .btn-claim:hover{box-shadow:0 8px 18px rgba(255,152,0,0.3);transform:translateY(-1px);}
+    .btn-disabled{background:#ccc !important;color:#666 !important;cursor:not-allowed !important;box-shadow:none !important;}
+
+    .reward{font-size:.9rem;font-weight:600;color:green;}
+    .tasks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+    .lang-select{min-width:120px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);padding:6px 10px;background:#fff;}
+  </style>
+</head>
+<body data-lang="en">
+
+  <header class="site-header">
+    <div class="d-flex align-items-center gap-2">
+      <i class="fas fa-list-check fa-lg" style="color:var(--accent)"></i>
+      <div class="brand"><span class="rail">RAIL</span> <span class="invest">INVEST</span></div>
+    </div>
+    <div class="ms-auto">
+      <select id="langSelect" class="lang-select">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="top-card">
+      <div class="top-overlay"></div>
+      <div class="top-content">
+        <h2 id="titleTop">Daily & Weekly Tasks</h2>
+        <p id="subtitleTop">Complete tasks to earn rewards</p>
+      </div>
+    </section>
+
+    <section class="tasks-grid" id="taskList">
+      <!-- Completed -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="sticker"><i class="fas fa-user-plus"></i></div>
+          <div class="task-title" id="t1-title">Invite 3 people today</div>
+        </div>
+        <div class="progress-text" id="t1-progress">(7/7)</div>
+        <div class="progress-bar"><div></div></div>
+        <button class="btn-claim" id="t1-btn">Claim Reward</button>
+        <div class="reward">$10</div>
+      </div>
+
+      <!-- Completed -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="sticker"><i class="fas fa-calendar-week"></i></div>
+          <div class="task-title" id="t2-title">Invite 3 people in 7 days</div>
+        </div>
+        <div class="progress-text" id="t2-progress">(7/7)</div>
+        <div class="progress-bar"><div></div></div>
+        <button class="btn-claim" id="t2-btn">Claim Reward</button>
+        <div class="reward">$15</div>
+      </div>
+
+      <!-- Completed -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="sticker"><i class="fas fa-calendar-day"></i></div>
+          <div class="task-title" id="t3-title">Invite 2 people in 15 days</div>
+        </div>
+        <div class="progress-text" id="t3-progress">(7/7)</div>
+        <div class="progress-bar"><div></div></div>
+        <button class="btn-claim" id="t3-btn">Claim Reward</button>
+        <div class="reward">$20</div>
+      </div>
+
+      <!-- Incomplete -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="sticker"><i class="fas fa-users"></i></div>
+          <div class="task-title" id="t4-title">Invite 5 people in 30 days</div>
+        </div>
+        <div class="progress-text" id="t4-progress">(2/5)</div>
+        <div class="progress-bar"><div></div></div>
+        <button class="btn-claim btn-disabled" id="t4-btn">Incomplete</button>
+        <div class="reward">$30</div>
+      </div>
+
+      <!-- Incomplete -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="sticker"><i class="fas fa-crown"></i></div>
+          <div class="task-title" id="t5-title">Become VIP this month</div>
+        </div>
+        <div class="progress-text" id="t5-progress">(0/1)</div>
+        <div class="progress-bar"><div></div></div>
+        <button class="btn-claim btn-disabled" id="t5-btn">Incomplete</button>
+        <div class="reward">$50</div>
+      </div>
+
+      <!-- Incomplete -->
+      <div class="task-card">
+        <div class="task-header">
+          <div class="sticker"><i class="fas fa-share-alt"></i></div>
+          <div class="task-title" id="t6-title">Share app with 10 people</div>
+        </div>
+        <div class="progress-text" id="t6-progress">(3/10)</div>
+        <div class="progress-bar"><div></div></div>
+        <button class="btn-claim btn-disabled" id="t6-btn">Incomplete</button>
+        <div class="reward">$40</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    (function(){
+      const TEXT = {
+        en:{top:"Daily & Weekly Tasks",sub:"Complete tasks to earn rewards",
+            t1:"Invite 3 people today",t2:"Invite 3 people in 7 days",t3:"Invite 2 people in 15 days",
+            t4:"Invite 5 people in 30 days",t5:"Become VIP this month",t6:"Share app with 10 people",
+            claim:"Claim Reward",incomplete:"Incomplete"},
+        fr:{top:"Tâches quotidiennes et hebdomadaires",sub:"Complétez des tâches pour gagner des récompenses",
+            t1:"Invitez 3 personnes aujourd'hui",t2:"Invitez 3 personnes en 7 jours",t3:"Invitez 2 personnes en 15 jours",
+            t4:"Invitez 5 personnes en 30 jours",t5:"Devenez VIP ce mois-ci",t6:"Partagez l'application avec 10 personnes",
+            claim:"Réclamer",incomplete:"Incomplet"},
+        ar:{top:"المهام اليومية والأسبوعية",sub:"أكمل المهام لكسب المكافآت",
+            t1:"ادعُ 3 أشخاص اليوم",t2:"ادعُ 3 أشخاص خلال 7 أيام",t3:"ادعُ شخصين خلال 15 يومًا",
+            t4:"ادعُ 5 أشخاص خلال 30 يومًا",t5:"أصبح VIP هذا الشهر",t6:"شارك التطبيق مع 10 أشخاص",
+            claim:"استلام",incomplete:"غير مكتمل"}
+      };
+
+      function applyLang(lang){
+        const t=TEXT[lang];
+        $('#titleTop').text(t.top);
+        $('#subtitleTop').text(t.sub);
+        $('#t1-title').text(t.t1);$('#t2-title').text(t.t2);$('#t3-title').text(t.t3);
+        $('#t4-title').text(t.t4);$('#t5-title').text(t.t5);$('#t6-title').text(t.t6);
+        $('#t1-btn').text(t.claim);$('#t2-btn').text(t.claim);$('#t3-btn').text(t.claim);
+        $('#t4-btn,#t5-btn,#t6-btn').text(t.incomplete);
+        if(lang==="ar"){$('html').attr('dir','rtl');}else{$('html').attr('dir','ltr');}
+      }
+      $('#langSelect').on('change',function(){applyLang($(this).val());});
+      applyLang('en');
+    })();
+  </script>
+</body>
+</html>

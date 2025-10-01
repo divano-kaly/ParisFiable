@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assistance — Rail Invest</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #ff9800;
+      --muted: #6b7280;
+      --card-radius: 14px;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background: linear-gradient(180deg,#fbfbfc,#f3f3f4);
+      margin:0;
+      padding:0;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Header */
+    .site-header{
+      position:fixed; top:0; left:0; right:0; height:64px; display:flex; align-items:center;
+      gap:12px; padding:10px 18px; background:#fff; border-bottom:1px solid rgba(0,0,0,0.05);
+      z-index:1100;
+    }
+    .brand{font-weight:700; letter-spacing:0.6px}
+    .brand .rail{color:green}
+    .brand .invest{color:var(--accent)}
+
+    .page-container{max-width:1000px; margin:84px auto 40px; padding:0 16px;}
+
+    /* TOP CARD */
+    .top-card{
+      border-radius:16px; overflow:hidden; position:relative; height:180px;
+      display:block; box-shadow:0 10px 30px rgba(15,20,30,0.06);
+      border:1px solid rgba(0,0,0,0.05); margin-bottom:20px; background:#222;
+    }
+    .top-card .bg{
+      position:absolute; inset:0; background:url('assistance-bg.jpg') center/cover no-repeat;
+      animation: bg-zoom 8s ease-in-out infinite;
+      filter:brightness(0.9);
+    }
+    @keyframes bg-zoom{0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+    .top-card .overlay{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4))}
+    .top-card .content{position:relative; z-index:2; color:#fff; padding:20px; display:flex; flex-direction:column; justify-content:center; height:100%}
+    .top-card h2{font-weight:700; font-size:1.4rem; margin:0}
+    .top-card p{font-size:0.9rem; margin-top:6px; opacity:0.9}
+
+    /* Panels */
+    .panel{
+      background:#fff; border-radius:12px; padding:18px; margin-bottom:20px;
+      box-shadow:0 10px 30px rgba(12,15,20,0.05); border:1px solid rgba(0,0,0,0.03);
+      transition:transform .35s ease, opacity .5s ease; opacity:0; transform:translateY(10px);
+    }
+    .panel.visible{opacity:1; transform:none;}
+    .panel h5{margin-bottom:10px; font-weight:600;}
+    .panel p{font-size:0.95rem; color:#444;}
+
+    /* Stickers / icons */
+    .sticker{
+      width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      background:rgba(255,152,0,0.1); color:var(--accent); font-size:20px; margin-bottom:10px;
+      box-shadow:0 6px 15px rgba(255,152,0,0.15);
+    }
+
+    /* Links as buttons */
+    .link-btn{
+      display:inline-block; margin-top:10px; padding:10px 16px; border-radius:999px;
+      background:linear-gradient(90deg, #ffb86b, #ff9800); color:#fff; font-weight:600;
+      text-decoration:none; box-shadow:0 6px 20px rgba(255,152,0,0.2);
+      transition:transform .3s ease;
+    }
+    .link-btn:hover{transform:scale(1.05);}
+
+    /* Orbit background */
+    .bg-orbit{
+      pointer-events:none; position:fixed; inset:auto 0 100px 0; height:200px; z-index:0;
+      background: radial-gradient(closest-side at 25% 40%, rgba(255,152,0,0.06), transparent 40%),
+                  radial-gradient(closest-side at 70% 60%, rgba(255,152,0,0.04), transparent 40%);
+      animation: orbit 16s linear infinite;
+    }
+    @keyframes orbit{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+  </style>
+</head>
+<body>
+
+<div class="bg-orbit" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fas fa-life-ring fa-lg" style="color:var(--accent)"></i>
+    <div class="brand"><span class="rail">RAIL</span> <span class="invest">INVEST</span></div>
+  </div>
+  <div class="ms-auto text-muted small">Assistance</div>
+</header>
+
+<div class="page-container">
+
+  <!-- Top Card -->
+  <div class="top-card">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <h2>Besoin d’aide ?</h2>
+      <p>Notre équipe d’assistance est disponible pour répondre à vos questions et résoudre vos problèmes rapidement.</p>
+    </div>
+  </div>
+
+  <!-- Pourquoi l’assistance -->
+  <section class="panel">
+    <div class="sticker"><i class="fas fa-question-circle"></i></div>
+    <h5>Pourquoi une assistance ?</h5>
+    <p>
+      Rail Invest est une plateforme d’investissement. Nous savons qu’il peut parfois y avoir des incompréhensions, 
+      des soucis techniques ou encore des questions liées aux retraits et aux comptes.  
+      C’est pour cela que nous avons mis en place une assistance dédiée afin que chaque investisseur puisse être accompagné en toute sérénité.
+    </p>
+  </section>
+
+  <!-- Assistance Telegram -->
+  <section class="panel">
+    <div class="sticker"><i class="fab fa-telegram"></i></div>
+    <h5>Nous contacter via Telegram</h5>
+    <p>
+      Pour une réponse rapide, vous pouvez rejoindre notre canal Telegram et discuter directement avec nos conseillers.  
+      Cliquez sur le bouton ci-dessous pour ouvrir le lien.
+    </p>
+    <a href="#" class="link-btn"><i class="fab fa-telegram me-2"></i> Rejoindre Telegram</a>
+  </section>
+
+  <!-- Assistance Chat -->
+  <section class="panel">
+    <div class="sticker"><i class="fas fa-comments"></i></div>
+    <h5>Assistance via le Chat</h5>
+    <p>
+      Vous préférez échanger directement depuis notre site ?  
+      Utilisez le chat intégré pour poser vos questions et recevoir une assistance personnalisée en temps réel.
+    </p>
+    <a href="#" class="link-btn"><i class="fas fa-comments me-2"></i> Ouvrir le Chat</a>
+  </section>
+
+  <!-- Conclusion -->
+  <section class="panel">
+    <div class="sticker"><i class="fas fa-handshake"></i></div>
+    <h5>Nous sommes là pour vous</h5>
+    <p>
+      Que ce soit pour un simple renseignement ou une aide technique plus poussée, notre équipe est disponible.  
+      Votre confiance est notre priorité, et nous mettons tout en œuvre pour vous garantir une expérience d’investissement fluide et sécurisée.
+    </p>
+  </section>
+
+</div>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Apparition en douceur des panels
+  $(function(){
+    $('.panel').each(function(i,el){
+      setTimeout(()=>$(el).addClass('visible'),200 + i*150);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Remises - Demo</title>
+
+  <!-- Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome (icônes) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --orange-1: #ff9a3c;
+      --orange-2: #ffc86b;
+      --blue-1: #2d79ff;
+      --blue-2: #4fb0ff;
+      --red: #ff2d55;
+      --muted: #9aa0a6;
+      --card-shadow: 0 6px 20px rgba(13,20,40,0.06);
+    }
+
+    body{
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #fffaf6;
+      color: #222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container-custom{
+      max-width: 760px;
+      margin: 18px auto;
+      padding: 0 12px 30px;
+    }
+
+    /* Header orange principal */
+    .header-box{
+      position: relative;
+      background-image : url(fond2.jpg);
+      border-radius: 12px;
+      padding: 20px 18px 40px;
+      color: #fff;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .header-box .label {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+    .header-box .main-count {
+      font-size: 44px;
+      font-weight: 700;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      letter-spacing: -0.6px;
+    }
+    .header-box .small-label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 14px;
+    }
+    .header-box .remise {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+    /* icône assis en bas à droite (remplace l'image) */
+    .header-icon{
+      position: absolute;
+      right: 18px;
+      bottom: -14px;
+      width: 68px;
+      height: auto;
+      transform: translateY(0);
+    }
+
+    /* Cartes de niveau */
+    .level-card{
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 14px 12px;
+      margin-bottom: 14px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .level-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .level-title{
+      font-weight:700;
+      font-size:16px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .level-title .medal{
+      font-size:18px;
+      color: #f0b000;
+    }
+    .discount {
+      font-weight:700;
+      font-size:15px;
+      color: var(--red); /* rabais en rouge */
+      margin-left:6px;
+    }
+    .chevron-link{
+      color: #6c7bff;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px;
+      border-radius:8px;
+    }
+    .chevron-link:hover{ background: rgba(99,115,255,0.06) }
+
+    .level-body{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:6px 0 8px;
+      border-top: 1px solid #f1f3f5;
+      margin-top:6px;
+      padding-top:12px;
+    }
+    .value-block{
+      text-align:left;
+      line-height:1.05;
+    }
+    .value{
+      font-weight:700;
+      font-size:20px;
+      color:#0b67d1; /* couleur des chiffres; tu pourras changer via js */
+    }
+    .sub{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+      display:block;
+    }
+
+    .rebate-box{
+      margin-top:12px;
+      background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
+      color:#fff;
+      padding:10px 12px;
+      border-radius: 30px;
+      text-align:center;
+      font-weight:700;
+      box-shadow: 0 6px 18px rgba(46,96,255,0.08);
+      font-size:15px;
+    }
+
+    /* Niv3: s'il doit être orange et animé */
+    .level-card.niv3 {
+      background: linear-gradient(90deg, #fff7ee, #fff1e0);
+      overflow: hidden;
+      /* garde apparence "card", mais on met en avant le rebate-box orange si besoin */
+    }
+
+    /* Le dernier "footer" (obtenir récompenses) : orange dégradé et en mouvement */
+    .footer-box{
+      margin-top:18px;
+      border-radius:12px;
+      padding: 14px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color:#222;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      box-shadow: var(--card-shadow);
+      animation: floatY 3s ease-in-out infinite;
+    }
+    .footer-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .footer-left img{
+      width:44px;
+      height:44px;
+      object-fit:cover;
+      border-radius:8px;
+      background:rgba(255,255,255,0.5);
+    }
+    .footer-text{
+      font-weight:700;
+      font-size:16px;
+    }
+    .verify-link{
+      text-decoration:none;
+    }
+    .btn-verify{
+      display:inline-block;
+      padding:8px 18px;
+      border-radius:24px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      color: white;
+      border: none;
+      font-weight:700;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    .btn-verify i { margin-left:8px; }
+
+    /* animation */
+    @keyframes floatY {
+      0%{ transform: translateY(0) }
+      50%{ transform: translateY(-6px) }
+      100%{ transform: translateY(0) }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 576px){
+      .header-box{ padding:18px 12px 36px; }
+      .header-box .main-count { font-size:38px; }
+      .header-box .remise { font-size:18px; }
+      .value{ font-size:18px; }
+      .rebate-box{ font-size:14px; padding:9px; }
+      .footer-text{ font-size:15px; }
+    }
+
+    /* util: état zero / positif pour changer couleur via JS */
+    .value.zero { color: #6c7b86; }
+    .value.positive { color: #13932d; }
+
+
+
+/* Footer fixe */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 165, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
+  border-top: 2px solid rgba(255, 165, 0, 0.3);
+  box-shadow: 0 -2px 8px rgba(255, 165, 0, 0.15);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  animation: borderMove 6s linear infinite;
+}
+
+/* Chaque bouton du footer */
+.footer-item {
+  flex: 1;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-item i {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Actif */
+.footer-item.active,
+.footer-item:hover {
+  color: orange;
+}
+
+.footer-item.active i,
+.footer-item:hover i {
+  transform: scale(1.2);
+  color: orange;
+}
+
+/* Pour que le contenu ne soit jamais caché */
+body {
+  padding-bottom: 60px; /* espace réservé pour le footer */
+}
+  </style>
+</head>
+<body>
+  <div class="container-custom">
+
+    <!-- Header orange -->
+    <div class="header-box">
+      <div class="label">Nombre total de personnes</div>
+      <div class="main-count" id="main-count">0</div>
+
+      <div class="small-label">Remise totale</div>
+      <div class="remise" id="main-remise">0 XAF</div>
+
+      <!-- icône (remplace par la tienne sur ton téléphone) -->
+      <img src="1.png" alt="icône assis" class="header-icon" />
+
+    </div>
+
+    <!-- Niv1 -->
+    <div class="level-card niv1">
+      <div class="level-top">
+        <div class="level-title">
+          <i class="fa-solid fa-medal" style="color:#f4c542;"></i> 
+          <span>Niv1.</span>
+          <span class="discount">(Rabais: 25%)</span>
+        </div>
+        <a href="#" class="chevron-link chevron-1" title="Voir Niv1"><i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+
+      <div class="level-body">
+        <div class="value-block">
+          <div class="value" id="niv1-remise">0 XAF</div>
+          <span class="sub">Remise d'équipe</span>
+        </div>
+
+        <div class="value-block text-end">
+          <div class="value" id="niv1-people">0</div>
+          <span class="sub">Les gens de l'équipe</span>
+        </div>
+      </div>
+
+      <div class="rebate-box">Rabais à percevoir : <span id="niv1-total">0 XAF</span></div>
+    </div>
+
+    <!-- Niv2 -->
+    <div class="level-card niv2">
+      <div class="level-top">
+        <div class="level-title">
+          <i class="fa-solid fa-medal medal" style="color:##c0c0c0"></i>
+          <span>Niv2.</span>
+          <span class="discount" style="color:#ff6b6b">(Rabais: 4%)</span>
+        </div>
+        <a href="#" class="chevron-link chevron-2" title="Voir Niv2"><i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+
+      <div class="level-body">
+        <div class="value-block">
+          <div class="value" id="niv2-remise">0 XAF</div>
+          <span class="sub">Remise d'équipe</span>
+        </div>
+
+        <div class="value-block text-end">
+          <div class="value" id="niv2-people">0</div>
+          <span class="sub">Les gens de l'équipe</span>
+        </div>
+      </div>
+
+      <div class="rebate-box">Rabais à percevoir : <span id="niv2-total">0 XAF</span></div>
+    </div>
+
+    <!-- Niv3 : carte mise en évidence avec léger background; si tu veux un rebate-box orange tu peux le remplacer -->
+    <div class="level-card niv3">
+      <div class="level-top">
+        <div class="level-title">
+          <i class="fa-solid fa-medal medal" style="color:#cd7f32"></i>
+          <span>Niv3.</span>
+          <span class="discount" style="color:#ff7b5a">(Rabais: 1%)</span>
+        </div>
+        <a href="#" class="chevron-link chevron-3" title="Voir Niv3"><i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+
+      <div class="level-body">
+        <div class="value-block">
+          <div class="value" id="niv3-remise">0 XAF</div>
+          <span class="sub">Remise d'équipe</span>
+        </div>
+
+        <div class="value-block text-end">
+          <div class="value" id="niv3-people">0</div>
+          <span class="sub">Les gens de l'équipe</span>
+        </div>
+      </div>
+
+      <div class="rebate-box" style="background: linear-gradient(90deg, #ff9a3c, #ffbf76);">Rabais à percevoir : <span id="niv3-total">0 XAF</span></div>
+    </div>
+
+    <!-- Footer animé orange (était "rose" before) -->
+    <div class="footer-box">
+      <div class="footer-left">
+        <!-- icône : remplace cette image par la tienne -->
+        <img src="1.png" alt="icone" />
+        <div class="footer-text">Obtenez des récompenses en invitant des amis</div>
+      </div>
+
+      <div>
+        <a href="#" class="verify-link" id="verify-link">
+          <button class="btn-verify" id="verify-btn">vérifier <i class="fa-solid fa-arrow-right"></i></button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+
+<!-- Bloc Lien recommandé & Règles -->
+<div class="container my-4" id="bloc-recommandation">
+
+  <!-- Lien recommandé -->
+  <div class="recommend-header text-center p-3 rounded">
+    <h5 class="fw-bold mb-2">Lien recommandé</h5>
+    <div class="recommend-code text-uppercase" id="ref-code">J5OYR8OXGJ</div>
+    <div class="recommend-url">
+      <a href="https://www.orange5g-vip.com/#/register?code=J5OYR8OXGJ" id="ref-url" target="_blank">
+        https://www.orange5g-vip.com/#/register?code=J5OYR8OXGJ
+      </a>
+    </div>
+    <button class="btn-copy mt-2" id="btn-copy">Copie</button>
+  </div>
+
+  <!-- Règles -->
+  <div class="rules-box mt-3 p-3 rounded">
+    <h6 class="fw-bold text-orange mb-3">
+      <i class="fa-solid fa-scale-balanced me-2"></i>RÈGLE
+    </h6>
+    <p class="mb-3 small">
+      Chaque fois qu'un membre de niveau inférieur investit, vous recevez une remise et devez la collecter manuellement.
+    </p>
+
+    <div class="rule-item d-flex fade-rule">
+      <div class="icon"><i class="fa-solid fa-medal text-warning"></i></div>
+      <div class="ms-2 small">
+        <strong>Niveau 1 :</strong> Vos amis directs deviennent membres de premier niveau.
+        Vous recevez <span class="text-danger fw-bold">25%</span> de remise sur leur investissement.
+      </div>
+    </div>
+
+    <div class="rule-item d-flex fade-rule">
+      <div class="icon"><i class="fa-solid fa-medal text-secondary"></i></div>
+      <div class="ms-2 small">
+        <strong>Niveau 2 :</strong> Quand vos amis invitent à leur tour, ils deviennent vos membres de 2<sup>e</sup> niveau.
+        Vous recevez <span class="text-danger fw-bold">4%</span> de remise.
+      </div>
+    </div>
+
+    <div class="rule-item d-flex fade-rule">
+      <div class="icon"><i class="fa-solid fa-medal" style="color:#ff6600;"></i></div>
+      <div class="ms-2 small">
+        <strong>Niveau 3 :</strong> Les amis de vos amis deviennent vos membres de 3<sup>e</sup> niveau.
+        Vous recevez <span class="text-danger fw-bold">1%</span> de remise.
+      </div>
+    </div>
+
+    <div class="rule-tip mt-3 p-2 rounded small">
+      <i class="fa-regular fa-lightbulb text-primary me-2"></i>
+      <strong>Astuce :</strong> Collectez vos remises régulièrement pour ne rien perdre !
+    </div>
+  </div>
+</div>
+
+<!-- Message de succès -->
+<div id="copy-msg">Lien copié avec succès ✅</div>
+
+<!-- STYLES -->
+<style>
+  /* Police globale */
+  #bloc-recommandation {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Header du lien */
+  #bloc-recommandation .recommend-header {
+    background: linear-gradient(90deg, #ff9a3c, #ffc86b);
+    color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  #bloc-recommandation .recommend-code {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff6600;
+  }
+  #bloc-recommandation .recommend-url a {
+    font-size: 14px;
+    color: #2d79ff;
+    text-decoration: none; /* pas de soulignement */
+    word-break: break-all;
+  }
+  #bloc-recommandation .btn-copy {
+    background: #ff9a3c;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  #bloc-recommandation .btn-copy:hover {
+    opacity: 0.9;
+  }
+
+  /* Règles */
+  #bloc-recommandation .rules-box {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 6px solid #ffe6cc; /* bande gauche */
+  }
+  #bloc-recommandation .text-orange { color: #ff6600; }
+  #bloc-recommandation .rule-item {
+    margin-bottom: 12px;
+    opacity: 0; /* caché au départ */
+    transform: translateY(20px);
+  }
+  #bloc-recommandation .rule-tip {
+    background: #f0f7ff;
+  }
+
+  /* Message copié */
+  #copy-msg {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: all 0.5s ease;
+    z-index: 9999;
+  }
+  #copy-msg.show {
+    top: 20px;
+  }
+
+
+#bloc-recommandation .rule-item {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: all 0.6s ease;
+}
+#bloc-recommandation .rule-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#bloc-recommandation .rule-item:hover {
+  background: #fff9f2;
+  border-radius: 8px;
+  padding: 6px;
+  transition: 0.3s;
+}
+#bloc-recommandation .rule-item:not(:last-child) {
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#bloc-recommandation .rule-tip {
+  background: #eaf6ff;
+  border-left: 4px solid #2d79ff;
+  font-style: italic;
+}
+</style>
+
+
+<div class="footer-nav">
+  <a href="accueil.html" class="footer-item" >
+    <i class="fas fa-home"></i>
+    <span>Accueil</span>
+  </a>
+  <a href="profil.html" class="footer-item">
+    <i class="fas fa-user"></i>
+    <span>Profil</span>
+  </a>
+  <a href="marche.html" class="footer-item">
+    <i class="fas fa-chart-line"></i>
+    <span>Marchés</span>
+  </a>
+  <a href="equipe.html"  class="footer-item active">
+    <i class="fas fa-users"></i>
+    <span>Équipe</span>
+  </a>
+  <a href="config.html" class="footer-item">
+    <i class="fas fa-cog"></i>
+    <span>Config</span>
+  </a>
+</div>
+
+
+<!-- jQuery + Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    $(function(){
+      // Exemple d'initialisation des valeurs (remplace par tes données dynamiques)
+      const data = {
+        mainCount: 0,
+        mainRemise: 0,
+        niv1: {remise: 0, people: 0, total: 0},
+        niv2: {remise: 0, people: 0, total: 0},
+        niv3: {remise: 0, people: 0, total: 0},
+      };
+
+      // fonction utilitaire pour afficher montant + appliquer classes zero/positive
+      function setValue(selector, rawValue){
+        const $el = $(selector);
+        const text = (typeof rawValue === 'number') ? rawValue + (String(rawValue).match(/[A-Za-z]/) ? '' : (selector.toLowerCase().includes('remise') || selector.toLowerCase().includes('total') ? ' XAF' : '')) : rawValue;
+        // ici on affiche directement (on accepte soit nombre, soit string)
+        $el.text(rawValue);
+        // si c'est numérique 0 ou >0 on change la couleur (classe)
+        const num = parseFloat(String(rawValue).replace(/[^0-9.-]+/g,""));
+        if(!isNaN(num)){
+          $el.removeClass('zero positive');
+          if(num === 0) $el.addClass('zero');
+          else if (num > 0) $el.addClass('positive');
+        }
+      }
+
+      // Exemple: on remplit avec 0 (tu peux changer à la volée plus bas)
+      $('#main-count').text(data.mainCount);
+      $('#main-remise').text(data.mainRemise + ' XAF');
+
+      // niveaux
+      $('#niv1-remise').text(data.niv1.remise + ' XAF').addClass('zero');
+      $('#niv1-people').text(data.niv1.people).addClass('zero');
+      $('#niv1-total').text(data.niv1.total + ' XAF');
+
+      $('#niv2-remise').text(data.niv2.remise + ' XAF').addClass('zero');
+      $('#niv2-people').text(data.niv2.people).addClass('zero');
+      $('#niv2-total').text(data.niv2.total + ' XAF');
+
+      $('#niv3-remise').text(data.niv3.remise + ' XAF').addClass('zero');
+      $('#niv3-people').text(data.niv3.people).addClass('zero');
+      $('#niv3-total').text(data.niv3.total + ' XAF');
+
+      // Exemple : réaction au clic sur chevrons / vérifier -> tu peux remplacer par navigation réelle
+      $('.chevron-link').on('click', function(e){
+        e.preventDefault();
+        const idx = $(this).closest('.level-card').index() + 1;
+        // action de démonstration
+        alert('Aller vers détails du Niv' + idx);
+      });
+
+      $('#verify-link, #verify-btn').on('click', function(e){
+        e.preventDefault();
+        alert('Lien vérifier cliqué — remplace par ta route réelle.');
+      });
+
+      // --- Démo: modifier dynamiquement les valeurs (exemple)
+      // Décommente ci-dessous pour voir changement de couleurs quand >0
+      /*
+      setTimeout(() => {
+        $('#main-count').text('5');
+        $('#main-remise').text('15 000 XAF');
+
+        $('#niv1-remise').text('5 000 XAF').removeClass('zero').addClass('positive');
+        $('#niv1-people').text('3').removeClass('zero').addClass('positive');
+        $('#niv1-total').text('5 000 XAF');
+
+        $('#niv2-remise').text('800 XAF');
+        $('#niv2-people').text('1');
+
+        $('#niv3-remise').text('200 XAF');
+        $('#niv3-people').text('1');
+      }, 900);
+      */
+    });
+  </script>
+
+<!-- SCRIPT -->
+<script>
+  $(function() {
+    // Animation apparition des règles
+    function revealRules() {
+      $('#bloc-recommandation .fade-rule').each(function(i) {
+        const top = $(this).offset().top;
+        const winTop = $(window).scrollTop();
+        const winHeight = $(window).height();
+        if (top < winTop + winHeight - 50 && $(this).css('opacity') == 0) {
+          $(this).delay(i * 300).animate({opacity:1, marginTop:0}, 600);
+          $(this).css('transform','translateY(0)');
+        }
+      });
+    }
+    $(window).on('scroll', revealRules);
+    revealRules();
+
+    // Copier l'URL
+    $('#btn-copy').on('click', function() {
+      const url = $('#ref-url').text();
+      navigator.clipboard.writeText(url).then(() => {
+        $('#copy-msg').addClass('show');
+        setTimeout(() => { $('#copy-msg').removeClass('show'); }, 3000);
+      });
+    });
+  });
+
+function revealRules() {
+  $('#bloc-recommandation .fade-rule').each(function(i) {
+    const top = $(this).offset().top;
+    const winTop = $(window).scrollTop();
+    const winHeight = $(window).height();
+    if (top < winTop + winHeight - 50 && !$(this).hasClass('visible')) {
+      setTimeout(() => { $(this).addClass('visible'); }, i * 250);
+    }
+  });
+}
+</script>
+
+  
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deposit — Rail Invest</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #ff9800;
+      --accent-2: #ffb86b;
+      --muted: #6b7280;
+      --soft: #fbfaf8;
+      --card-radius: 14px;
+      --glass: rgba(255,255,255,0.9);
+    }
+    html,body{height:100%}
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      margin:0;
+      background: linear-gradient(180deg,#fbfbfc,#f7f6f5);
+      color:#24303a;
+      -webkit-font-smoothing:antialiased;
+      padding-bottom:100px; /* safe bottom area */
+    }
+
+    /* header */
+    .site-header{
+      position:fixed; top:0; left:0; right:0; height:64px; display:flex; align-items:center;
+      gap:12px; padding:10px 18px; background:#fff; border-bottom:1px solid rgba(0,0,0,0.04);
+      z-index:1200;
+    }
+    .brand{font-weight:700; letter-spacing:0.6px}
+    .brand .rail{color:green}
+    .brand .invest{color:var(--accent)}
+
+    .page { max-width:1100px; margin:84px auto 24px; padding:0 16px; }
+
+    /* TOP CARD */
+    .top-card {
+      position:relative;
+      height:170px;
+      border-radius:14px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#ffffff, #fffaf6);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border:1px solid rgba(0,0,0,0.04);
+      display:flex; flex-direction:column; gap:12px; padding:14px;
+    }
+
+    .top-bg {
+      position:absolute; inset:0;
+      background-image: url('fond1.jpg'); /* replace */
+      background-size:cover; background-position:center;
+      filter:brightness(0.86) saturate(1.02);
+      z-index:0;
+      transform-origin:center;
+      animation: bg-zoom 10s ease-in-out infinite;
+    }
+    @keyframes bg-zoom {
+      0%{ transform: scale(1) }
+      50%{ transform: scale(1.03) }
+      100%{ transform: scale(1) }
+    }
+
+    .top-overlay {
+      position:absolute; inset:0; z-index:1;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,152,0,0.02));
+    }
+
+    .top-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; justify-content:space-between; }
+
+    .top-row {
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      color:#fff; text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    }
+    .top-item { display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
+    .label { font-size:0.85rem; color:rgba(255,255,255,0.9); opacity:0.95; }
+    .value { font-weight:700; font-size:1.05rem; color:#fff; }
+
+    .balance-row { display:flex; gap:14px; align-items:center; color:#222; }
+    .balance-big { font-size:1.6rem; font-weight:800; color:#1f2937; }
+    .balance-unit { font-size:0.9rem; color:var(--muted); margin-left:6px; }
+
+    .secure-badge {
+      display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.92);
+      padding:8px 10px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    }
+    .secure-badge img{ width:28px; height:28px; object-fit:contain }
+
+    /* progress bars cluster */
+    .progress-cluster { display:flex; gap:12px; align-items:center; margin-top:6px; }
+    .prog-shell {
+      flex:1; background:rgba(0,0,0,0.04); border-radius:999px; overflow:hidden; height:10px; position:relative;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+    .prog-fill {
+      position:absolute; left:0; top:0; bottom:0; width:0%;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      transition: width 1.6s linear;
+    }
+    .prog-fill.rev { left:auto; right:0; width:0%; transition: width 1.6s linear; }
+
+    /* quick amount grid */
+    .amount-grid {
+      margin-top:18px; display:grid; gap:12px;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+    }
+    @media(max-width:1024px){ .amount-grid{ grid-template-columns: repeat(3,1fr);} }
+    @media(max-width:768px){ .amount-grid{ grid-template-columns: repeat(2,1fr);} }
+    .amt-btn {
+      background: linear-gradient(180deg,#fff,#fff7f0);
+      border:1px solid rgba(0,0,0,0.04);
+      border-radius:12px; padding:12px; text-align:center; cursor:pointer;
+      box-shadow:0 6px 18px rgba(255,152,0,0.06); transition:transform .16s ease, box-shadow .16s ease;
+      user-select:none;
+    }
+    .amt-btn:hover { transform:translateY(-4px); box-shadow:0 16px 30px rgba(255,152,0,0.12); }
+    .amt-value { font-weight:700; color:var(--accent); font-size:1rem; }
+    .amt-sub { font-size:0.82rem; color:var(--muted); margin-top:6px; }
+
+    /* deposit form */
+    .deposit-card {
+      margin-top:18px;
+      background: #fff;
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    .form-floating .form-control::placeholder { color: rgba(255,152,0,0.8); } /* placeholder color */
+    input::placeholder, textarea::placeholder { color: rgba(255,152,0,0.8) !important; opacity:0.9; }
+
+    /* small helper */
+    .hint { color:var(--muted); font-size:0.9rem; margin-top:8px; display:block; }
+
+    /* styled file input */
+    .file-preview { margin-top:8px; font-size:0.9rem; color:var(--muted); }
+
+    /* footer-safe spacer */
+    .safe-space { height:80px; }
+
+    /* language selector */
+    .lang-select { min-width:120px; border-radius:10px; border:1px solid rgba(0,0,0,0.06); padding:6px 10px; background:#fff;}
+
+    /* subtle sticker */
+    .sticker {
+      width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      background: rgba(255,152,0,0.12); color:var(--accent); font-size:18px;
+      box-shadow:0 6px 18px rgba(255,152,0,0.06);
+    }
+
+    /* RTL tweaks for Arabic */
+    [dir="rtl"] .top-row { direction:rtl; }
+    [dir="rtl"] .balance-row { direction:rtl; }
+
+  </style>
+</head>
+<body data-lang="en">
+
+  <!-- header -->
+  <header class="site-header">
+    <div class="d-flex align-items-center gap-2">
+      <i class="fas fa-coins fa-lg" style="color:var(--accent)"></i>
+      <div class="brand"><span class="rail">RAIL</span> <span class="invest">INVEST</span></div>
+    </div>
+
+    <div class="ms-auto d-flex align-items-center gap-2">
+      <select id="langSelect" class="lang-select" aria-label="Select language">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- top card -->
+    <section class="top-card" role="region" aria-label="Account summary">
+      <div class="top-bg" aria-hidden="true"></div>
+      <div class="top-overlay" aria-hidden="true"></div>
+
+      <div class="top-content">
+        <div class="top-row">
+          <div class="top-item">
+            <div class="label" id="lbl-id">ID:</div>
+            <div class="value" id="userId">INV-2025-00987</div>
+          </div>
+
+          <div class="top-item">
+            <div class="label" id="lbl-balance">Balance:</div>
+            <div class="value" id="balanceVal">2,450.00 <span class="balance-unit">$</span></div>
+          </div>
+
+          <div class="top-item">
+            <div class="label" id="lbl-usable">Usable:</div>
+            <div class="value" id="usableVal">1,650.00 <span class="balance-unit">$</span></div>
+          </div>
+
+          <div class="top-item secure-badge" title="Secure">
+            <img src="2.png" alt="secure"> <div style="font-size:0.9rem;color:#3a3a3a">Secure</div>
+          </div>
+        </div>
+
+        <!-- progress bars pair -->
+        <div class="progress-cluster" aria-hidden="true">
+          <div class="prog-shell" aria-hidden="true">
+            <div class="prog-fill" id="prog1"></div>
+          </div>
+          <div style="width:12px"></div>
+          <div class="prog-shell" aria-hidden="true">
+            <div class="prog-fill rev" id="prog2"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- quick amounts -->
+    <section aria-label="Quick amounts" class="mt-3">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center gap-2">
+          <div class="sticker"><i class="fas fa-bolt"></i></div>
+          <div>
+            <div style="font-weight:700">Quick amounts</div>
+            <div class="hint" id="hintQuick">Click an amount to fill the deposit value</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="amount-grid" id="amountGrid">
+        <!-- JS will fill buttons -->
+      </div>
+    </section>
+
+    <!-- deposit form -->
+    <section class="deposit-card" aria-label="Deposit form">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div style="font-weight:700; font-size:1.05rem;" id="formTitle">Make a deposit</div>
+        <div class="text-muted small" id="formSubtitle">After payment, fill in proof and submit</div>
+      </div>
+
+      <form id="depositForm" novalidate>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label" id="lbl-amount">Amount (USD)</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input type="number" step="0.01" min="0" id="inputAmount" name="amount" class="form-control" placeholder="Enter amount" required>
+            </div>
+            <small class="form-text text-muted" id="amountHelp">Choose a quick amount or enter your own.</small>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label" id="lbl-depositno">Deposit number</label>
+            <input type="text" id="inputDepositNo" name="deposit_no" class="form-control" placeholder="e.g. 00012345" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label" id="lbl-network">Network / Channel</label>
+            <select id="inputNetwork" name="network" class="form-select" required>
+              <option value="">Choose network</option>
+              <option value="mtn">MTN</option>
+              <option value="moov">Moov / Artel</option>
+              <option value="wave">Wave</option>
+              <option value="bank">Bank Transfer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label" id="lbl-transaction">Transaction ID</label>
+            <input type="text" id="inputTxId" name="txid" class="form-control" placeholder="Transaction ID (if any)">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" id="lbl-proof">Proof of payment</label>
+            <input type="file" id="inputProof" name="proof" class="form-control" accept="image/*,application/pdf">
+            <div class="file-preview" id="filePreview">No file chosen</div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-text text-muted">
+              <i class="fas fa-info-circle"></i>
+              <span id="afterPayText">This form should be completed after you make the payment. Your proof will be reviewed by our team.</span>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex justify-content-center mt-2">
+            <button type="submit" class="btn btn-warning px-4 py-2" id="submitBtn">Confirm Deposit</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <div class="safe-space" aria-hidden="true"></div>
+  </main>
+
+  <!-- JS (jQuery only used for convenience; vanilla possible) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    (function(){
+      // --- Data / UI text for translations ---
+      const TEXT = {
+        en: {
+          quickHint: "Click an amount to fill the deposit value",
+          title: "Make a deposit",
+          subtitle: "After payment, fill in proof and submit",
+          amount: "Amount (USD)",
+          amountHelp: "Choose a quick amount or enter your own.",
+          depositNo: "Deposit number",
+          depositNoPH: "e.g. 00012345",
+          network: "Network / Channel",
+          transaction: "Transaction ID",
+          proof: "Proof of payment",
+          proofNoFile: "No file chosen",
+          afterPay: "This form should be completed after you make the payment. Your proof will be reviewed by our team.",
+          submit: "Confirm Deposit",
+          idLabel: "ID:",
+          balanceLabel: "Balance:",
+          usableLabel: "Usable:",
+        },
+        fr: {
+          quickHint: "Cliquez un montant pour remplir la valeur",
+          title: "Faire un dépôt",
+          subtitle: "Après le paiement, joignez la preuve et validez",
+          amount: "Montant (USD)",
+          amountHelp: "Choisissez un montant rapide ou saisissez le vôtre.",
+          depositNo: "Numéro de dépôt",
+          depositNoPH: "ex: 00012345",
+          network: "Réseau / Canal",
+          transaction: "ID de transaction",
+          proof: "Preuve de paiement",
+          proofNoFile: "Aucun fichier choisi",
+          afterPay: "Ce formulaire doit être rempli après le paiement. Votre preuve sera vérifiée par notre équipe.",
+          submit: "Valider le dépôt",
+          idLabel: "ID:",
+          balanceLabel: "Solde:",
+          usableLabel: "Solde utilisable:",
+        },
+        ar: {
+          quickHint: "انقر على المبلغ لملء قيمة الإيداع",
+          title: "إجراء إيداع",
+          subtitle: "بعد الدفع، أرفق الإثبات ثم أكد",
+          amount: "المبلغ (دولار)",
+          amountHelp: "اختر مبلغًا سريعًا أو أدخل مبلغك الخاص.",
+          depositNo: "رقم الإيداع",
+          depositNoPH: "مثال: 00012345",
+          network: "الشبكة / القناة",
+          transaction: "معرّف المعاملة",
+          proof: "إثبات الدفع",
+          proofNoFile: "لم يتم اختيار ملف",
+          afterPay: "يُرجى ملء هذا النموذج بعد إتمام الدفع. سيتم مراجعة الإثبات من قبل فريقنا.",
+          submit: "تأكيد الإيداع",
+          idLabel: "المعرف:",
+          balanceLabel: "الرصيد:",
+          usableLabel: "الرصيد المتاح:",
+        }
+      };
+
+      // initial amounts list (12 values)
+      const amounts = [10,25,50,100,250,500,750,1000,1500,2000,5000,10000];
+
+      // build amount grid
+      function buildAmounts(){
+        const grid = $('#amountGrid');
+        grid.empty();
+        amounts.forEach(v=>{
+          const btn = $(`
+            <div class="amt-btn" tabindex="0" role="button" aria-pressed="false">
+              <div class="amt-value">$${v.toLocaleString()}</div>
+              <div class="amt-sub">Fast pick</div>
+            </div>`);
+          btn.on('click keypress', function(e){
+            if(e.type==='click' || (e.type==='keypress' && (e.which===13||e.which===32))){
+              $('#inputAmount').val(v.toFixed(2)).trigger('input');
+              $(this).animate({transform: 'scale(1)'}, 0); // noop visual hook
+            }
+          });
+          grid.append(btn);
+        });
+      }
+
+      // progress animation logic: fill prog1 L->R, then start prog2 R->L, then reset, loop
+      let prog1 = $('#prog1'), prog2 = $('#prog2');
+      function runProgressCycle(){
+        // reset
+        prog1.css({width:'0%'}); prog2.css({width:'0%'}); prog2.css({right:'0', left:'auto'});
+        // step1 fill prog1 to 100
+        setTimeout(()=> prog1.css({width:'100%'}), 120);
+        // when prog1 completes (approx 1800ms) start prog2 fill from right to left
+        setTimeout(()=> {
+          // move rev to right side and animate its width to 100% from right
+          prog2.css({width:'100%'}); // because .rev uses right:0 anchor
+        }, 1900);
+        // after both complete, reset and restart shortly
+        setTimeout(()=> {
+          prog1.css({width:'0%'}); prog2.css({width:'0%'}); 
+          // small pause then restart
+          setTimeout(runProgressCycle, 700);
+        }, 4000);
+      }
+
+      // translation helper
+      function applyLang(lang){
+        const t = TEXT[lang] || TEXT.en;
+        // set text nodes and placeholders
+        $('#hintQuick').text(t.quickHint);
+        $('#formTitle').text(t.title);
+        $('#formSubtitle').text(t.subtitle);
+        $('#lbl-amount').text(t.amount);
+        $('#inputAmount').attr('placeholder', t.amount);
+        $('#amountHelp').text(t.amountHelp);
+        $('#lbl-depositno').text(t.depositNo);
+        $('#inputDepositNo').attr('placeholder', t.depositNoPH);
+        $('#lbl-network').text(t.network);
+        $('#lbl-transaction').text(t.transaction);
+        $('#inputTxId').attr('placeholder', t.transaction);
+        $('#lbl-proof').text(t.proof);
+        $('#filePreview').text(t.proofNoFile);
+        $('#afterPayText').text(t.afterPay);
+        $('#submitBtn').text(t.submit);
+        $('#lbl-id').text(t.idLabel);
+        $('#lbl-balance').text(t.balanceLabel);
+        $('#lbl-usable').text(t.usableLabel);
+
+        // rtl handling for Arabic
+        if(lang === 'ar'){
+          $('html').attr('dir','rtl'); $('body').attr('dir','rtl');
+        }else{
+          $('html').attr('dir','ltr'); $('body').attr('dir','ltr');
+        }
+        // store
+        $('body').attr('data-lang', lang);
+      }
+
+      $(function(){
+        buildAmounts();
+        runProgressCycle(); // start animation
+
+        // file preview
+        $('#inputProof').on('change', function(){
+          const f = this.files && this.files[0];
+          if(!f){ $('#filePreview').text(TEXT[$('body').attr('data-lang')].proofNoFile); return; }
+          $('#filePreview').text(f.name + ' (' + Math.round(f.size/1024) + ' KB)');
+        });
+
+        // language selector
+        $('#langSelect').on('change', function(){
+          const lang = $(this).val();
+          applyLang(lang);
+        });
+        // init default lang English
+        applyLang('en');
+        $('#langSelect').val('en');
+
+        // form submit: prototype validation + UX
+        $('#depositForm').on('submit', function(e){
+          e.preventDefault();
+          const amt = parseFloat($('#inputAmount').val());
+          if(!amt || amt <= 0){ alert('Please enter a valid amount'); $('#inputAmount').focus(); return; }
+          if(!$('#inputDepositNo').val().trim()){ alert('Deposit number required'); $('#inputDepositNo').focus(); return; }
+          if(!$('#inputNetwork').val()){ alert('Please choose a network'); $('#inputNetwork').focus(); return; }
+          // simulate upload/submit
+          $('#submitBtn').prop('disabled', true).text('Processing...');
+          setTimeout(()=> {
+            alert('Deposit submitted — our team will verify your proof shortly.');
+            $('#submitBtn').prop('disabled', false).text(TEXT[$('body').attr('data-lang')].submit);
+            $('#depositForm')[0].reset();
+            $('#filePreview').text(TEXT[$('body').attr('data-lang')].proofNoFile);
+          }, 1300);
+        });
+
+        // small keyboard accessibility: Enter on amount quick btns will trigger
+        $('#amountGrid').on('keydown', '.amt-btn', function(e){
+          if(e.key === 'Enter' || e.key === ' '){
+            $(this).click();
+            e.preventDefault();
+          }
+        });
+
+        // allow manual numeric typing to override quick picks (no extra code needed)
+      });
+
+    })();
+  </script>
+</body>
+</html>

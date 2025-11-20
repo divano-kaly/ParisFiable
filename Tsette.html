@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TSETTE MARKETING — Landing Pro</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@300;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- ROOT COLORS ---------- */
+    :root{
+      --accent:#3b82f6;
+      --accent-2:#6b21a8;
+      --accent-green:#12b886;
+      --muted:#666;
+      --light-purple:#a855f7;
+      --light-blue:#38bdf8;
+      --light-green:#4ade80;
+      --container-max:720px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    /* ---------- BACKGROUND ANIMÉ ---------- */
+    body{
+      font-family:Poppins, sans-serif;
+      background:linear-gradient(135deg,#eef1f7,#ffffff,#f3e8ff);
+      background-size:300% 300%;
+      animation:bgMove 10s ease infinite;
+      min-height:100vh;
+      display:flex;justify-content:center;align-items:center;
+      padding:28px 14px;
+    }
+    @keyframes bgMove{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* ---------- CARD ---------- */
+    .card{
+      width:100%;max-width:var(--container-max);
+      background:rgba(255,255,255,0.85);
+      border-radius:28px;
+      padding:30px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 20px 50px rgba(0,0,0,0.15);
+      text-align:center;
+      animation:float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+      100%{transform:translateY(0)}
+    }
+
+    /* ---------- AVATAR ---------- */
+    .avatar{
+      width:135px;height:135px;border-radius:999px;overflow:hidden;margin:0 auto;
+      border:6px solid #fff;
+      box-shadow:0 0 25px rgba(0,0,0,0.2);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+
+    h1{
+      margin-top:14px;
+      font-size:34px;
+      font-family:Raleway, sans-serif;
+      color:var(--accent-2);
+      letter-spacing:1.5px;
+      font-weight:700;
+      text-shadow:0px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* ---------- DESCRIPTION ---------- */
+    .desc-long{
+      margin-top:16px;
+      color:#333;
+      line-height:1.6;
+      font-size:15.6px;
+      font-family:Roboto, sans-serif;
+    }
+    .highlight{
+      color:var(--light-purple);
+      font-weight:600;
+    }
+    .highlight2{
+      color:var(--light-blue);
+      font-weight:600;
+    }
+    .highlight3{
+      color:var(--light-green);
+      font-weight:600;
+    }
+
+    /* ---------- CAROUSEL ---------- */
+    .carousel{
+      margin-top:22px;width:100%;height:155px;border-radius:18px;
+      overflow:hidden;position:relative;
+      box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    }
+    .carousel-track{display:flex;height:100%;transition:transform 1.3s ease}
+    .carousel-item{
+      min-width:100%;height:100%;position:relative;
+      color:white;font-weight:600;font-size:17px;
+      display:flex;justify-content:center;align-items:center;
+      text-align:center;padding:18px;
+      opacity:0;transform:scale(0.92);
+      transition:opacity .8s, transform .8s;
+    }
+    .carousel-item.active{opacity:1;transform:scale(1)}
+
+    .carousel-item .bg{
+      position:absolute;inset:0;background-size:cover;background-position:center;
+      filter:brightness(0.55);
+    }
+    .carousel-item::before{
+      content:'';position:absolute;inset:0;
+      background:rgba(0,0,0,0.30);
+    }
+    .carousel-item .content{position:relative;z-index:2;max-width:86%}
+
+    /* Dots */
+    .dots{display:flex;gap:8px;justify-content:center;margin-top:12px}
+    .dot{
+      width:10px;height:10px;border-radius:99px;background:#cfcfcf;
+      transition:.3s;
+    }
+    .dot.active{background:var(--accent)}
+
+    /* ---------- BUTTONS ---------- */
+    .cta-group{
+      margin-top:26px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .btn{
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:700;
+      color:white;
+      text-decoration:none;
+      display:flex;justify-content:center;align-items:center;
+      gap:8px;
+      font-size:16px;
+      transition:0.3s;
+      box-shadow:0 4px 18px rgba(0,0,0,0.12);
+      animation:pulse 4s infinite ease-in-out;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.03)}
+      100%{transform:scale(1)}
+    }
+
+    .btn-telegram{
+      background:linear-gradient(90deg,#1d9bf0,#1178e9);
+      box-shadow:0 0 18px rgba(29,155,240,0.45);
+    }
+    .btn-telegram:hover{transform:scale(1.06)}
+
+    .btn-trend{
+      background:linear-gradient(90deg,#12b886,#0a9a66);
+      box-shadow:0 0 18px rgba(16,200,120,0.45);
+    }
+    .btn-trend:hover{transform:scale(1.06)}
+
+    /* ---------- HELP TEXT ---------- */
+    .help-text{
+      margin-top:18px;
+      font-size:14px;
+      color:#444;
+      font-family:Roboto, sans-serif;
+      line-height:1.5;
+    }
+
+    @media(min-width:600px){
+      .cta-group{flex-direction:row}
+      .carousel{height:175px}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- AVATAR -->
+  <div class="avatar">
+    <img src="1.jpg" alt="Avatar">
+  </div>
+
+  <h1>TSETTE MARKETING</h1>
+
+  <!-- DESCRIPTION COLORÉE + STICKERS -->
+  <div class="desc-long">
+    <span class="highlight">📱 Je te montre comment transformer ton téléphone</span>  
+    en <b class="highlight3">source de revenus réels</b>.<br>
+    Pas besoin de chance — seulement de la <b class="highlight2">détermination</b> 💪.<br><br>
+
+    <b class="highlight">🔥 N’ATTEND PERSONNE</b><br>
+    Lance-toi maintenant et change ta vie.<br><br>
+
+    Clique sur [ CRÉER UN COMPTE TRENDSTAR] ci-dessous pour créer ton compte. 🚀
+  </div>
+
+  <!-- CAROUSEL -->
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="track">
+
+      <div class="carousel-item active" data-bg="c1.jpg">
+        <div class="bg"></div>
+        <div class="content">Inscris-toi sur TRENDSTAR et gagne <b>15 000 à 30 000 F CFA / jour</b> 🚀🔥</div>
+      </div>
+
+      <div class="carousel-item" data-bg="c2.jpg">
+        <div class="bg"></div>
+        <div class="content">Crée ton compte puis active-le avec seulement <b>4000 F</b> pour accéder à la plateforme 📲💸</div>
+      </div>
+
+      <div class="carousel-item" data-bg="c3.jpg">
+        <div class="bg"></div>
+        <div class="content">Commence avec 4000 F et fais évoluer tes revenus tous les jours de manière automatisée ⚡💥</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="cta-group">
+    <a href="https://t.me/+zuCOu6OGu6NmZDdk" class="btn btn-telegram">📢 Rejoindre la chaîne Telegram</a>
+    <a href="https://trendstaragencies.com/register/tsette" class="btn btn-trend">📝 Créer ton compte TRENDSTAR</a>
+  </div>
+
+  <div class="help-text">
+    REMARQUE : Si tu rencontres un problème lors de l’inscription, contacte-moi sur WhatsApp pour accéder à mon  
+    <b class="highlight2">groupe de formation gratuit</b> + coaching personnalisé.
+  </div>
+
+</div>
+
+<!-- ---------- JS CAROUSEL SLOW & SMOOTH ---------- -->
+<script>
+ const track = document.getElementById("track");
+const items = [...document.querySelectorAll(".carousel-item")];
+const dots = [...document.querySelectorAll(".dot")];
+let index = 0;
+
+// Ajouter les images aux backgrounds
+items.forEach(item => {
+  const img = item.getAttribute("data-bg");
+  item.querySelector(".bg").style.backgroundImage = `url(${img})`;
+});
+
+function slide(n){
+  items[index].classList.remove("active");
+  dots[index].classList.remove("active");
+
+  index = (n + items.length) % items.length;
+
+  items[index].classList.add("active");
+  dots[index].classList.add("active");
+
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+setInterval(()=> slide(index + 1), 5200);
+
+dots.forEach((d,i)=> d.onclick = ()=> slide(i));
+</script>
+
+</body>
+</html>

@@ -82,18 +82,9 @@
       font-size:15.6px;
       font-family:Roboto, sans-serif;
     }
-    .highlight{
-      color:var(--light-purple);
-      font-weight:600;
-    }
-    .highlight2{
-      color:var(--light-blue);
-      font-weight:600;
-    }
-    .highlight3{
-      color:var(--light-green);
-      font-weight:600;
-    }
+    .highlight{color:var(--light-purple);font-weight:600;}
+    .highlight2{color:var(--light-blue);font-weight:600;}
+    .highlight3{color:var(--light-green);font-weight:600;}
 
     /* ---------- CAROUSEL ---------- */
     .carousel{
@@ -111,7 +102,6 @@
       transition:opacity .8s, transform .8s;
     }
     .carousel-item.active{opacity:1;transform:scale(1)}
-
     .carousel-item .bg{
       position:absolute;inset:0;background-size:cover;background-position:center;
       filter:brightness(0.55);
@@ -156,30 +146,27 @@
       100%{transform:scale(1)}
     }
 
-    .btn-telegram{
-      background:linear-gradient(90deg,#1d9bf0,#1178e9);
-      box-shadow:0 0 18px rgba(29,155,240,0.45);
-    }
-    .btn-telegram:hover{transform:scale(1.06)}
-
     .btn-trend{
       background:linear-gradient(90deg,#12b886,#0a9a66);
       box-shadow:0 0 18px rgba(16,200,120,0.45);
     }
-    .btn-trend:hover{transform:scale(1.06)}
 
-    /* ---------- HELP TEXT ---------- */
-    .help-text{
-      margin-top:18px;
-      font-size:14px;
-      color:#444;
-      font-family:Roboto, sans-serif;
-      line-height:1.5;
+    .btn-whatsapp{
+      background:linear-gradient(90deg,#25D366,#128C4A);
+      box-shadow:0 0 18px rgba(37,211,102,0.45);
     }
 
-    @media(min-width:600px){
-      .cta-group{flex-direction:row}
-      .carousel{height:175px}
+    .btn-whatsapp:hover,
+    .btn-trend:hover{transform:scale(1.06)}
+
+    .btn-telegram{
+      background:linear-gradient(90deg,#1d9bf0,#1178e9);
+      box-shadow:0 0 18px rgba(29,155,240,0.45);
+    }
+
+    .btn-assist{
+      background:linear-gradient(90deg,#9333ea,#7e22ce);
+      box-shadow:0 0 18px rgba(147,51,234,0.45);
     }
   </style>
 </head>
@@ -195,22 +182,19 @@
 
   <h1>TSETTE MARKETING</h1>
 
-  <!-- DESCRIPTION COLORÉE + STICKERS -->
+  <!-- DESCRIPTION -->
   <div class="desc-long">
     <span class="highlight">📱 Je te montre comment transformer ton téléphone</span>  
     en <b class="highlight3">source de revenus réels</b>.<br>
     Pas besoin de chance — seulement de la <b class="highlight2">détermination</b> 💪.<br><br>
-
     <b class="highlight">🔥 N’ATTEND PERSONNE</b><br>
     Lance-toi maintenant et change ta vie.<br><br>
-
-    Clique sur [ CRÉER UN COMPTE TRENDSTAR] ci-dessous pour créer ton compte. 🚀
+    Clique sur [ CRÉER UN COMPTE TRENDSTAR ] ci-dessous pour commencer. 🚀
   </div>
 
   <!-- CAROUSEL -->
   <div class="carousel" id="carousel">
     <div class="carousel-track" id="track">
-
       <div class="carousel-item active" data-bg="c1.jpg">
         <div class="bg"></div>
         <div class="content">Inscris-toi sur TRENDSTAR et gagne <b>15 000 à 30 000 F CFA / jour</b> 🚀🔥</div>
@@ -218,45 +202,62 @@
 
       <div class="carousel-item" data-bg="c2.jpg">
         <div class="bg"></div>
-        <div class="content">Crée ton compte puis active-le avec seulement <b>4000 F</b> pour accéder à la plateforme 📲💸</div>
+        <div class="content">Crée ton compte puis active-le avec seulement <b>4000 F</b> 📲💸</div>
       </div>
 
       <div class="carousel-item" data-bg="c3.jpg">
         <div class="bg"></div>
-        <div class="content">Commence avec 4000 F et fais évoluer tes revenus tous les jours de manière automatisée ⚡💥</div>
+        <div class="content">Commence avec 4000 F et fais évoluer tes revenus chaque jour ⚡💥</div>
       </div>
-
     </div>
   </div>
 
-  <!-- Dots -->
+  <!-- DOTS -->
   <div class="dots">
     <div class="dot active"></div>
     <div class="dot"></div>
     <div class="dot"></div>
   </div>
 
-  <!-- BUTTONS -->
+  <!-- BUTTONS GROUP -->
   <div class="cta-group">
-    <a href="https://t.me/+zuCOu6OGu6NmZDdk" class="btn btn-telegram">📢 Rejoindre la chaîne Telegram</a>
-    <a href="https://trendstaragencies.com/register/tsette" class="btn btn-trend">📝 Créer ton compte TRENDSTAR</a>
+
+    <!-- 1️⃣ CREER COMPTE TRENDSTAR -->
+    <a href="https://trendstaragencies.com/register/tsette" class="btn btn-trend">
+      📝 Créer ton compte TRENDSTAR
+    </a>
+
+    <!-- 2️⃣ WHATSAPP CHANNEL -->
+    <a href="https://whatsapp.com/channel/0029VbCAsVS8V0tvGJ87KE27" class="btn btn-whatsapp">
+      📣 Rejoindre la chaîne WhatsApp
+    </a>
+
+    <!-- 3️⃣ CHAINE TELEGRAM (déjà existant mais déplacé) -->
+    <a href="https://t.me/+zuCOu6OGu6NmZDdk" class="btn btn-telegram">
+      📢 Rejoindre la chaîne Telegram
+    </a>
+
+    <!-- 4️⃣ ASSISTANCE TELEGRAM PERSO -->
+    <a href="https://t.me/tsette_marketing" class="btn btn-assist">
+      👤 Assistance Telegram Personnel
+    </a>
+
   </div>
 
   <div class="help-text">
-    REMARQUE : Si tu rencontres un problème lors de l’inscription, contacte-moi sur WhatsApp pour accéder à mon  
-    <b class="highlight2">groupe de formation gratuit</b> + coaching personnalisé.
+    Si tu rencontres un problème lors de l’inscription, contacte-moi pour accéder à mon  
+    <b class="highlight2">groupe de formation gratuit</b>.
   </div>
 
 </div>
 
-<!-- ---------- JS CAROUSEL SLOW & SMOOTH ---------- -->
+<!-- ---------- JS CAROUSEL ---------- -->
 <script>
  const track = document.getElementById("track");
 const items = [...document.querySelectorAll(".carousel-item")];
 const dots = [...document.querySelectorAll(".dot")];
 let index = 0;
 
-// Ajouter les images aux backgrounds
 items.forEach(item => {
   const img = item.getAttribute("data-bg");
   item.querySelector(".bg").style.backgroundImage = `url(${img})`;
